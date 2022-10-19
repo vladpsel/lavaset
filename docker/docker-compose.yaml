@@ -26,7 +26,7 @@ services:
     ports:
       - '9000:9000'
     volumes:
-      - ../.:/var/www/wildlang
+      - ../.:/var/www/lavaset
     depends_on:
       - db
 
@@ -43,9 +43,9 @@ services:
       - db
 
   phpmyadmin:
+    container_name: phpmyadmin_lavaset
     image: phpmyadmin
     restart: always
-    container_name: phpmyadmin_lang
     environment:
       MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
       PMA_USER: ${DB_USER}

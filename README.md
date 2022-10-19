@@ -20,23 +20,37 @@ I will support this preset.
  - go to "docker" directory and change .env.docker data to your own. !!!ATTENTION!! for "quickstart" youn need to
 change "lavaset"-prefix in every file to your own prefix.
  - run **set -a**
- - run source .env.docker
+ - run source .docker.env
  - run docker-compose up -d --build
+ - go to php container 
+ - run composer install
+ - run chmod -R 777 .
+ - open localhost:8080
 
 ### Setup
  - go to "project_dir/.env" and change variables to your own
  - run composer install
  - run npm install
  
+## Run app in "every day" mode
+
+### If you develop with docker (optional)
+- run **set -a**
+- run source .docker.env
+- run docker-compose up -d
+- open localhost:8080
+
+### Default
+- follow official Laravel instructions for running Laravel app
 
 
+## App features and code approach
 
+### User and user roles
 
+This preset don`t use ["laravel-permission" by Spattie](https://spatie.be/docs/laravel-permission/v5/introduction) or some other package
+for user-role feature. Because in my projects I don't need all of its functionality. 
 
-### Attention!
-This repo already contains "ready to publish" application. 
 
 ### If you develop with "native environment" (I mean LAMP / WAMP stack etc.)" just follow official Laravel installation and run instructions.
-
-
 ### Foo
