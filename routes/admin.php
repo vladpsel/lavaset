@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\AdminSecurityController;
 use Illuminate\Support\Facades\Route;
 
@@ -16,3 +17,6 @@ use Illuminate\Support\Facades\Route;
 
 Route::match(['get', 'post'], '/login', [AdminSecurityController::class, 'login'])
     ->name('admin.login');
+
+
+Route::get('dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');

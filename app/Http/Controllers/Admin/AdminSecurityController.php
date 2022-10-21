@@ -31,7 +31,7 @@ class AdminSecurityController extends Controller
 
             if (Auth::attempt($credentials)) {
                 $this->request->session()->regenerate();
-                return redirect('/');
+                return redirect()->route('admin.dashboard');
             }
 
             return back()->withErrors([

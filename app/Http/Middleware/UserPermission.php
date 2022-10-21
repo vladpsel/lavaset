@@ -21,10 +21,15 @@ class UserPermission
         if ($request->route()->getName() === 'admin.login') {
             return $next($request);
         }
-        dd($request->user());
-//        if (!$request->user()) {
-//            return redirect()->route('admin.login');
-//        }
+
+        if (!$request->user()) {
+            return redirect()->route('admin.login');
+        }
+
+        if (!$request->user()->hasRole($role)) {
+            return redirect('/');
+        }
+
         return $next($request);
     }
 }
