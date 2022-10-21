@@ -31,6 +31,9 @@ change "lavaset"-prefix in every file to your own prefix.
  - go to "project_dir/.env" and change variables to your own
  - run composer install
  - run npm install
+   - use npx mix watch -- --watch-options-poll=1000
+     for frontend compiler
+
  
 ## Run app in "every day" mode
 
@@ -51,6 +54,11 @@ change "lavaset"-prefix in every file to your own prefix.
 This preset don`t use ["laravel-permission" by Spattie](https://spatie.be/docs/laravel-permission/v5/introduction) or some other package
 for user-role feature. Because in my projects I don't need all of its functionality. 
 
+#### Admin
+Admin feature include 4 parts. 
+ - 1-st part is UserPermission middleware. It includes logic for checking admin/roles rules
+ - 2-nd part is in RouteServiceProvider. In this part we connect middleware with admin prefix.
+ - 3-d part is in routes/admin.php this file contains all routes for admin (except admin login - this  route locate in web routes)
 
 ### If you develop with "native environment" (I mean LAMP / WAMP stack etc.)" just follow official Laravel installation and run instructions.
 ### Foo

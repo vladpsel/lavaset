@@ -1,0 +1,39 @@
+.form-main
+  .label
+    display: block
+    font: normal 600 .9em/1.5 $main-font
+    color: $grey-one
+    margin-bottom: .5rem
+  fieldset
+    margin-bottom: 1rem
+  input
+    display: block
+  input,
+  .action-btn,
+  textarea,
+  select
+    padding: 1.27rem 1.4rem
+    cursor: pointer
+    border: 2px solid $color-one
+    border-radius: .625rem
+  input,
+  select,
+  textarea,
+  .action-btn
+    font: normal 1em/1.3 $main-font
+    &:disabled,
+    &.disabled
+      background: $color-one
+      pointer-events: none
+  .error
+    font: normal 500 .9em/1.5 $main-font
+    color: $error
+  .action-btn
+    border: none
+    background: $color-two
+    color: $text-black
+    width: 100%
+    font-weight: 700
+    +animback
+    &:hover
+      background: $color-three

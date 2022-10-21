@@ -1,0 +1,16 @@
+{
+    "name": "voopsc/lavaset",
+    "description": "Simple Laravel Helper package",
+    "autoload": {
+        "psr-4": {
+            "Voopsc\\Lavaset\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Vlad Voopsc",
+            "email": "vpanovwr@gmail.com"
+        }
+    ],
+    "require": {}
+}

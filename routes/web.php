@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\AdminSecurityController;
+use App\Http\Controllers\SecurityController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,3 +19,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('logout', [SecurityController::class, 'logout'])->name('logout');
+
+//AdminRole

@@ -1,0 +1,16 @@
+#!/usr/bin/env php
+
+<?php
+
+use Voopsc\Lavaset\Lavasetapp;
+
+require ('vendor/autoload.php');
+
+$root = $_SERVER['PWD'] . '/';
+
+try {
+    unset($argv[0]);
+    $lavaset = new Lavasetapp($argv);
+} catch (Exception $e) {
+    var_dump($e->getMessage());
+}

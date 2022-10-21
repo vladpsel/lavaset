@@ -1,0 +1,62 @@
+.btn
+  display: flex
+  flex-wrap: nowrap
+  align-items: center
+  justify-content: center
+  text-align: center
+  font-size: inherit
+  cursor: pointer
+
+.btn-group
+  display: flex
+  flex-wrap: wrap
+  align-items: center
+  justify-content: center
+  .btn
+    margin-right: 1rem
+    &:last-child
+      margin-right: 0
+
+.btn-icon
+  span
+    &:not(.icon)
+      margin-right: .9rem
+  .icon
+    width: 10px
+    flex: 0 0 0
+
+.btn-main
+  padding: .8rem 1.4rem
+  cursor: pointer
+  border-radius: .438rem
+  font: normal 400 1em/1.3 $main-font
+
+.primary
+  background: $color-two
+  color: $text-white
+  font-weight: 500
+  +animback
+  &:hover
+    background: $color-three
+
+.neutral
+  background: $grey-one
+  color: $color-four
+  +animback
+  &:hover
+    background: $color-one
+
+.btn.info
+  background: #ffddb9
+  +animback
+  &:hover
+    background: #ebc194
+
+.btn-link
+  font-size: .9em
+  font-weight: bold
+  color: $color-four
+
+.task-title
+  font: normal 600 1.2em/1.5 $main-font
+  color: $color-four
