@@ -7,9 +7,53 @@
 @import './admin/elements/formMain'
 
 @import './admin/components/button'
+@import './admin/components/typography'
 
+@import './admin/components/list'
+
+@import './admin/elements/adminAside'
+
+body
+  font: normal 400 16px/1 $main-font
+
+
+a
+  color: inherit
+  text-decoration: none
+
+img,
+svg
+  vertical-align: middle
+
+.img-wrp
+  img,
+  svg
+    width: 100%
 
 .wrapper
   max-width: $laptop-res
+
+#admin
+  display: flex
+  justify-content: flex-start
+  align-items: stretch
+  width: 100%
+
+.icon-list > li a,
+.icon-item
+  display: flex
+  flex-wrap: nowrap
+  align-items: center
+  justify-content: flex-start
+  width: 100%
+  .icon
+    flex: 0 0 2.188rem
+    margin-right: 1rem
+  svg
+    fill: #ffffff
+
+.dashboard-panel
+  flex: 1 1 70%
+  padding: 2rem
 
 @import './admin/media'

@@ -1,0 +1,51 @@
+.admin-aside
+  display: flex
+  justify-content: flex-start
+  align-items: flex-start
+  flex-wrap: nowrap
+  flex: 1 1 40%
+  .logo
+    padding: 0 2rem 2rem 2rem
+    border-bottom: 1px solid $color-one
+  .icon-list
+    width: 100%
+  .icon-list > li a,
+  .icon-item
+    padding: .8rem 2rem
+    +animback
+    &:hover
+      background: $color-three
+  .icon-item
+    margin-bottom: 1rem
+
+
+  &__left
+    background: $grey-two
+    min-height: 100vh
+    padding: 2rem 0
+    display: flex
+    flex-flow: column wrap
+    align-items: center
+    justify-content: space-between
+    color: $text-white
+    flex: 0 0 auto
+
+  &__bar
+    padding: 2rem
+    height: 100%
+    border-right: 1px solid $color-one
+    flex: 1 1 70%
+
+.aside-top
+  width: 100%
+
+.aside-bot
+  width: 100%
+
+.version
+  text-align: center
+  opacity: .8
+
+.burger-wrp
+  padding: 0 1rem
+  display: none

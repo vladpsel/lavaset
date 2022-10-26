@@ -16,14 +16,17 @@ class UserPermission
      * @param Closure(\Illuminate\Http\Request): (\Illuminate\Http\Response|\Illuminate\Http\RedirectResponse)  $next
      * @return Response|RedirectResponse
      */
-    public function handle(Request $request, Closure $next, $role = 'admin')
+    public function handle(Request $request, Closure $next, $role = 'user')
     {
         if ($request->route()->getName() === 'admin.login') {
             return $next($request);
         }
 
         if (!$request->user()) {
-            return redirect()->route('admin.login');
+            if ($role === 'admin') {
+                return redirect()->route('admin.login');
+            }
+            return redirect()->route('login');
         }
 
         if (!$request->user()->hasRole($role)) {
