@@ -18,7 +18,28 @@ class AdminPageController extends Controller
 
     public function index()
     {
-        $pages = Page::all();
+        $page = new Page();
+        $pages = $page->getLocaleGroupedPages();
+
+        if ($this->request->isMethod('post') && $this->request->has('submit')) {
+            $validated = $this->request->validate([
+                'title' => 'required|min:3',
+                'alias' => 'required|min:3',
+            ]);
+            $page = new Page();
+            $data = $validated;
+            $data['group'] = $page->getGroup();
+
+            $locales = config('app.available_locales');
+
+            foreach ($locales as $locale) {
+                $data['locale'] = $locale;
+                $page = $page->create($data);
+                $result[] = $page;
+            }
+            return redirect()->route('admin.pages');
+        }
+
 
         return view('admin.pages.index', [
             'pages' => $pages,

@@ -13,7 +13,7 @@
 <body>
 
 @yield('content')
-<script src="{{ mix('/dist/js/app.js') }}"></script>
+<script src="{{ mix('/dist/js/script.js') }}"></script>
 </body>
 </html>
 

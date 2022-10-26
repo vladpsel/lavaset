@@ -18,6 +18,7 @@
     },
     "dependencies": {
         "cyrillic-to-translit-js": "^3.2.1",
+        "imask": "^6.4.3",
         "inputmask": "^5.0.7",
         "vue": "^3.2.41"
     }

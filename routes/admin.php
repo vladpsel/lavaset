@@ -23,6 +23,6 @@ Route::match(['get', 'post'], '/login', [AdminSecurityController::class, 'login'
 Route::get('dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
 
 Route::prefix('pages')->group(function() {
-    Route::get('/', [AdminPageController::class, 'index'])->name('admin.pages');
+    Route::match(['get', 'post'], '/', [AdminPageController::class, 'index'])->name('admin.pages');
     Route::post('create', [AdminPageController::class, 'create']);
 });

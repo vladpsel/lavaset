@@ -62,13 +62,6 @@ export default {
 <style lang="sass" scoped>
 @import "resources/sass/admin/variables"
 
-.aside-bar__list
-    > li
-        padding: .7rem 0
-        border-bottom: 1px solid #dadada
 
-.lang-item
-    font: normal 700 .8em/1.2 $main-font
-    cursor: pointer
 
 </style>
