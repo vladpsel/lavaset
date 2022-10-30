@@ -1,6 +1,6 @@
 @extends('admin.layout')
 
-@section('title', 'Створити сторінку | Lavaset')
+@section('title', 'Оновити сторінку - ' . $single->title . ' | Lavaset')
 
 @section('content')
 <div id="admin">
@@ -12,9 +12,8 @@
               <input type="text" placeholder="Пошук">
           </fieldset>
       </form>
-
-        @if(count($pages) < 1)
-            <p>Немає єлементів</p>
+      @if(count($pages) < 1)
+          <p>Немає єлементів</p>
         @else
             <ul class="aside-bar__list">
                 @foreach($pages as $page)
@@ -30,25 +29,31 @@
                     </li>
                 @endforeach
             </ul>
-        @endif
+      @endif
+
 
     </div>
   </aside>
   <div class="dashboard-panel">
+      @if(session('message'))
+          <div class="full message-notification">
+              {!! session('message') !!}
+          </div>
+      @endif
     <form class="form-main" action="#" method="post">
       @csrf
 
       <div class="flex f-between v-center">
-        <h1 class="title-main item mb-1">Cторінка</h1>
+        <h1 class="title-main item mb-1">Оновити сторінку: {{ $single->title }}</h1>
         <div class="btn-group item mb-1">
-          <button type="submit" name="submit" class="btn btn-main primary">Створити нову</button>
+          <button type="submit" name="submit" class="btn btn-main primary">Оновити</button>
         </div>
       </div>
 
       <div class="flex">
         <fieldset class="two-of-four">
           <label class="label">Назва</label>
-          <input type="text" name="title" value="{{ request()->input('title', old('title')) }}" required>
+          <input type="text" name="title" value="{{ request()->input('title', $single->title) }}" required>
             @error('title')
             <p class="notice mb-1 full error"> {{ $message }} </p>
             @enderror
@@ -56,7 +61,9 @@
 
         <fieldset class="two-of-four">
           <label class="label">Аліас</label>
-          <input type="text" name="alias" value="{{ request()->input('alias', old('alias')) }}" class="translit-input" required>
+          <input type="text" name="alias" value="{{ request()->input('alias', $single->alias) }}" class="translit-input" required
+                 @if(!$single->isEditable) readonly @endif
+          >
             @error('alias')
             <p class="notice mb-1 full error"> {{ $message }} </p>
             @enderror
@@ -70,7 +77,7 @@
 
         <fieldset class="two-of-four">
           <label class="label">Опис</label>
-          <textarea name="description" rows="8" cols="80">{{ request()->input('description', old('description')) }}</textarea>
+          <textarea name="description" rows="8" cols="80">{{ request()->input('description', $single->description) }}</textarea>
         </fieldset>
           @error('description')
           <p class="notice mb-1 full error"> {{ $message }} </p>
@@ -78,7 +85,7 @@
 
         <fieldset class="two-of-four">
           <label class="label">Ключові слова</label>
-          <textarea name="keywords" rows="8" cols="80">{{ request()->input('keywords', old('keywords')) }}</textarea>
+          <textarea name="keywords" rows="8" cols="80">{{ request()->input('keywords', $single->keywords) }}</textarea>
         </fieldset>
       </div>
 

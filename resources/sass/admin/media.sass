@@ -2,24 +2,27 @@
 
 // Desktop
 @media (max-width: 1440px)
-    .one-of-five,
-    .two-of-five,
-    .three-of-five,
-    .four-of-five
-        flex: 1 1 50%
-        width: 50%
+  .one-of-five,
+  .two-of-five,
+  .three-of-five,
+  .four-of-five
+      flex: 1 1 50%
+      width: 50%
 
-    .list-two-items,
-    .list-three-items,
-    .list-four-items
+  .list-two-items,
+  .list-three-items,
+  .list-four-items
+    > li
+      flex: 1 1 50%
+      width: 50%
+      max-width: 50%
+      margin-bottom: 1rem
+      &.mx
         > li
-            flex: 1 1 50%
-            width: 50%
-            max-width: 50%
-            margin-bottom: 1rem
-        &.mx
-            > li
-                max-width: 50%
+          max-width: 50%
+
+  .admin-aside
+    display: none
 
 // Tablets small desktop
 @media (max-width: 1024px)
@@ -76,3 +79,6 @@
 
     .list
         justify-content: center
+
+    .dashboard-panel
+      padding: 1.3rem 0

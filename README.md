@@ -31,7 +31,7 @@ change "lavaset"-prefix in every file to your own prefix.
  - go to "project_dir/.env" and change variables to your own
  - run composer install
  - run npm install
- - use npx mix watch -- --watch-options-poll=1000npx mix watch -- --watch-options-poll=1000npx mix watch -- --watch-options-poll=1000npx mix watch -- --watch-options-poll=1000npx mix watch -- --watch-options-poll=1000
+ - use npx mix watch -- --watch-options-poll=1000
      for frontend compiler
 
  

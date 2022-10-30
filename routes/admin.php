@@ -24,5 +24,7 @@ Route::get('dashboard', [AdminController::class, 'dashboard'])->name('admin.dash
 
 Route::prefix('pages')->group(function() {
     Route::match(['get', 'post'], '/', [AdminPageController::class, 'index'])->name('admin.pages');
-    Route::post('create', [AdminPageController::class, 'create']);
+    Route::match(['get', 'post'], '/{id}', [AdminPageController::class, 'update'])
+        ->where('id', '[0-9]+')
+        ->name('admin.pages.single');
 });

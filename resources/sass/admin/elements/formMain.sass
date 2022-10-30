@@ -25,6 +25,11 @@
     &.disabled
       background: $color-one
       pointer-events: none
+    &:read-only,
+    &:disabled
+      background: #ededed
+      cursor: auto
+
   .error
     font: normal 500 .9em/1.5 $main-font
     color: $error

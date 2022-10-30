@@ -19,6 +19,10 @@ class Page extends Model
         'isEditable',
     ];
 
+    protected $attributes = [
+        'isEditable' => 1,
+    ];
+
     public function getLocaleGroupedPages()
     {
      $pages = self::all();
@@ -43,4 +47,54 @@ class Page extends Model
         $group = count($data);
         return ++$group;
     }
+
+    public function getUpdateRules(self $page, $key)
+    {
+
+        $rules = [
+            'title' => 'required|min:2',
+        ];
+
+        if ($page->isEditable === null) {
+            return $rules;
+        }
+
+        $alias = self::where('alias', $key)->first();
+
+
+        if (empty($alias)) {
+            $rules['alias'] = 'required|min:2|unique:pages';
+            return $rules;
+        }
+
+
+        if ($alias->group === $page->group) {
+            $rule['alias'] = 'required|min:2';
+        } else {
+            $rules['alias'] = 'required|min:2|unique:pages';
+        }
+
+        return $rules;
+    }
+
+    public function updateCommonFields(self $page)
+    {
+        $pages = self::where([
+            ['group', '=', $page->group],
+            ['id', '!=', $page->id],
+        ])->get();
+
+        foreach ($pages as $single) {
+            $single->update($this->getCommonFields($page));
+        }
+
+        return $pages;
+    }
+
+    private function getCommonFields(self $page) {
+        return [
+            'alias' => $page->alias,
+        ];
+    }
+
 }
