@@ -46,6 +46,9 @@
       <div class="flex f-between v-center">
         <h1 class="title-main item mb-1">Оновити сторінку: {{ $single->title }}</h1>
         <div class="btn-group item mb-1">
+          @if($single->isEditable)
+                <a href="{{ route('admin.pages.single.delete', $single->group) }}" class="btn btn-main alert">Видалити</a>
+          @endif
           <button type="submit" name="submit" class="btn btn-main primary">Оновити</button>
         </div>
       </div>

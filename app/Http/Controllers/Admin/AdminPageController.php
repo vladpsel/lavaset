@@ -59,36 +59,37 @@ class AdminPageController extends Controller
             'pages' => $pages,
         ]);
     }
-    public function create()
-    {
-        $data = $this->request->input('data');
-        if (empty($data)) {
-            return response()->json([
-                'message' => 'No valid data',
-                'code' => 500,
-            ], 500);
-        }
 
-        $validated = Validator::make($data, [
-            'title' => 'required|min:3',
-            'alias' => 'required|min:2|unique:pages',
-        ]);
+//    public function create()
+//    {
+//        $data = $this->request->input('data');
+//        if (empty($data)) {
+//            return response()->json([
+//                'message' => 'No valid data',
+//                'code' => 500,
+//            ], 500);
+//        }
+//
+//        $validated = Validator::make($data, [
+//            'title' => 'required|min:3',
+//            'alias' => 'required|min:2|unique:pages',
+//        ]);
+//
+//        $page = new Page();
+//        $data['group'] = $page->getGroup();
+//
+//        $locales = config('app.available_locales');
+//
+//        foreach ($locales as $locale) {
+//            $data['locale'] = $locale;
+//            $page = $page->create($data);
+//            $result[] = $page;
+//        }
+//
+//        return response()->json($result);
+//    }
 
-        $page = new Page();
-        $data['group'] = $page->getGroup();
-
-        $locales = config('app.available_locales');
-
-        foreach ($locales as $locale) {
-            $data['locale'] = $locale;
-            $page = $page->create($data);
-            $result[] = $page;
-        }
-
-        return response()->json($result);
-    }
-
-    public function update(int $id)
+    public function update(int $id): Factory|View|RedirectResponse|Application
     {
         $page = Page::find($id);
 
@@ -118,5 +119,29 @@ class AdminPageController extends Controller
             'single' => $page,
             'pages' => $pages,
         ]);
+    }
+
+    public function delete(int $id): View|Factory|RedirectResponse|Application
+    {
+        $requested = Page::where('group', $id)->get();
+
+        if (count($requested) < 1 || !$requested[0]->isEditable) {
+            return back();
+        }
+
+        if ($this->request->isMethod('post') && $this->request->has('submit')) {
+            foreach ($requested as $item) {
+                $item->delete();
+            }
+            return redirect()->route('admin.pages');
+        }
+
+        $pages = (new Page())->getLocaleGroupedPages();
+
+        return view('admin.pages.delete', [
+            'requested' => $requested,
+            'pages' => $pages,
+        ]);
+
     }
 }

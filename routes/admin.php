@@ -27,4 +27,7 @@ Route::prefix('pages')->group(function() {
     Route::match(['get', 'post'], '/{id}', [AdminPageController::class, 'update'])
         ->where('id', '[0-9]+')
         ->name('admin.pages.single');
+    Route::match(['get', 'post'], '/{id}/delete', [AdminPageController::class, 'delete'])
+        ->where('id', '[0-9]+')
+        ->name('admin.pages.single.delete');
 });
