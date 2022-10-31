@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Helpers\FileHelper;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Models\Page;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -73,6 +74,30 @@ class AdminCategoryController extends Controller
         return view('admin.categories.update', [
             'category' => $category,
             'items' => $category->getLocaleGroupedItems(),
+        ]);
+    }
+
+    public function delete(int $id, FileHelper $fileHelper)
+    {
+        $requested = Category::where('group', $id)->get();
+
+        if (count($requested) < 1) {
+            return back();
+        }
+
+        if ($this->request->isMethod('post') && $this->request->has('submit')) {
+            $data['icon'] = $fileHelper->removeFile($requested[0]->icon, 'upload/categories');
+            foreach ($requested as $item) {
+                $item->delete();
+            }
+            return redirect()->route('admin.categories');
+        }
+
+        $category = (new Category())->getLocaleGroupedItems();
+
+        return view('admin.categories.delete', [
+            'requested' => $requested,
+            'items' => $category,
         ]);
     }
 

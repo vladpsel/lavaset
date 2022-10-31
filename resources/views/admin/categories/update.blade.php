@@ -46,6 +46,7 @@
       <div class="flex f-between v-center">
         <h1 class="title-main item mb-1">Оновити категорію: {{ $category->title }}</h1>
         <div class="btn-group item mb-1">
+          <a href="{{ route('admin.categories.single.delete', $category->group) }}" class="btn btn-main alert">Видалити</a>
           <button type="submit" name="submit" class="btn btn-main primary">Оновити</button>
         </div>
       </div>

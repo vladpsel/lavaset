@@ -39,4 +39,7 @@ Route::prefix('categories')->group(function () {
     Route::match(['get', 'post'], '/{id}', [AdminCategoryController::class, 'update'])
         ->where('id', '[0-9]+')
         ->name('admin.categories.single');
+    Route::match(['get', 'post'], '/{id}/delete', [AdminCategoryController::class, 'delete'])
+        ->where('id', '[0-9]+')
+        ->name('admin.categories.single.delete');
 });
