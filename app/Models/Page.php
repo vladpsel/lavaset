@@ -69,7 +69,7 @@ class Page extends Model
 
 
         if ($alias->group === $page->group) {
-            $rule['alias'] = 'required|min:2';
+            $rules['alias'] = 'required|min:2';
         } else {
             $rules['alias'] = 'required|min:2|unique:pages';
         }

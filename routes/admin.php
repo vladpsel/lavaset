@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminCategoryController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\AdminPageController;
 use App\Http\Controllers\Admin\AdminSecurityController;
@@ -30,4 +31,8 @@ Route::prefix('pages')->group(function() {
     Route::match(['get', 'post'], '/{id}/delete', [AdminPageController::class, 'delete'])
         ->where('id', '[0-9]+')
         ->name('admin.pages.single.delete');
+});
+
+Route::prefix('categories')->group(function () {
+    Route::match(['get', 'post'], '/', [AdminCategoryController::class, 'index'])->name('admin.categories');
 });
