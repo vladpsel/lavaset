@@ -24,6 +24,20 @@ class Category extends Model
         'isVisible' => 1,
     ];
 
+    public function updateCommonFields(self $page)
+    {
+        $pages = self::where([
+            ['group', '=', $page->group],
+            ['id', '!=', $page->id],
+        ])->get();
+
+        foreach ($pages as $single) {
+            $single->update($this->getCommonFields($page));
+        }
+
+        return $pages;
+    }
+
     public function getLocaleGroupedItems()
     {
         $pages = self::all();
@@ -74,5 +88,13 @@ class Category extends Model
         }
 
         return $data;
+    }
+
+    private function getCommonFields(self $page): array
+    {
+        return [
+            'alias' => $page->alias,
+            'icon' => $page->icon,
+        ];
     }
 }

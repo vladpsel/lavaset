@@ -17,4 +17,5 @@ yarn-error.log
 
 
 /public/dist
+/public/upload
 /docker/mysql

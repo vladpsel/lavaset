@@ -22,6 +22,7 @@ Route::match(['get', 'post'], '/login', [AdminSecurityController::class, 'login'
 
 
 Route::get('dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
+Route::get('clear-asset/{path}/{file?}', [AdminController::class, 'removePicture'])->name('admin.remove.asset');
 
 Route::prefix('pages')->group(function() {
     Route::match(['get', 'post'], '/', [AdminPageController::class, 'index'])->name('admin.pages');
@@ -35,4 +36,7 @@ Route::prefix('pages')->group(function() {
 
 Route::prefix('categories')->group(function () {
     Route::match(['get', 'post'], '/', [AdminCategoryController::class, 'index'])->name('admin.categories');
+    Route::match(['get', 'post'], '/{id}', [AdminCategoryController::class, 'update'])
+        ->where('id', '[0-9]+')
+        ->name('admin.categories.single');
 });
