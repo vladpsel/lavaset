@@ -46,6 +46,11 @@
                         Категорії
                     </a>
                 </li>
+                <li>
+                    <a href="{{ route('admin.components') }}">
+                        Компоненти
+                    </a>
+                </li>
             </ul>
         </li>
 
