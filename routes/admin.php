@@ -50,4 +50,7 @@ Route::prefix('components')->group(function () {
     Route::match(['get', 'post'], '/{id}', [AdminComponentsController::class, 'update'])
         ->where('id', '[0-9]+')
         ->name('admin.components.single');
+    Route::match(['get', 'post'], '/{id}/delete', [AdminComponentsController::class, 'delete'])
+        ->where('id', '[0-9]+')
+        ->name('admin.components.single.delete');
 });

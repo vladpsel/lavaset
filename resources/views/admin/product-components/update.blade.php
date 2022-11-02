@@ -47,7 +47,8 @@
       <div class="flex f-between v-center">
         <h1 class="title-main item mb-1">Компонент </h1>
         <div class="btn-group item mb-1">
-          <button type="submit" name="submit" class="btn btn-main primary">Створити новий</button>
+            <a href="{{ route('admin.components.single.delete', $component->group) }}" class="btn btn-main alert">Видалити</a>
+            <button type="submit" name="submit" class="btn btn-main primary">Оновити</button>
         </div>
       </div>
 

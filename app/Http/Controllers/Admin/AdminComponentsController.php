@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Helpers\FileHelper;
 use App\Http\Controllers\Controller;
 use App\Models\Component;
+use Illuminate\Config\Repository;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -23,7 +24,7 @@ class AdminComponentsController extends Controller
      */
     private FileHelper $fileHelper;
     /**
-     * @var \Illuminate\Config\Repository|Application|mixed
+     * @var Repository|Application|mixed
      */
     private mixed $locales;
 
@@ -64,7 +65,7 @@ class AdminComponentsController extends Controller
         ]);
     }
 
-    public function update(int $id)
+    public function update(int $id): Factory|View|RedirectResponse|Application
     {
         $component = Component::find($id);
 
@@ -89,6 +90,27 @@ class AdminComponentsController extends Controller
         return view('admin.product-components.update', [
             'component' => $component,
             'items' => $component->getLocaleGroupedItems(),
+        ]);
+    }
+
+    public function delete(int $id): View|Factory|RedirectResponse|Application
+    {
+        $requested = Component::where('group', $id)->get();
+
+        if (count($requested) < 1) {
+            return back();
+        }
+
+        if ($this->request->isMethod('post') && $this->request->has('submit')) {
+            foreach ($requested as $item) {
+                $item->delete();
+            }
+            return redirect()->route('admin.components')->with('message', 'Компонент було видалено');
+        }
+
+        return view('admin.product-components.delete', [
+            'requested' => $requested,
+            'items' => (new Component())->getLocaleGroupedItems(),
         ]);
     }
 }
