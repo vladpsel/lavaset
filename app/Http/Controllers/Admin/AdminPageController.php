@@ -25,7 +25,7 @@ class AdminPageController extends Controller
     public function index(): View|Factory|Application|RedirectResponse
     {
         $page = new Page();
-        $pages = $page->getLocaleGroupedPages();
+        $pages = $page->getLocaleGroupedItems();
 
         if ($this->request->isMethod('post') && $this->request->has('submit')) {
             $rules = [
@@ -67,7 +67,7 @@ class AdminPageController extends Controller
         if (!$page) {
             return redirect()->route('admin.pages');
         }
-        $pages = $page->getLocaleGroupedPages();
+        $pages = $page->getLocaleGroupedItems();
 
         if ($this->request->isMethod('post') && $this->request->has('submit')) {
 
@@ -107,7 +107,7 @@ class AdminPageController extends Controller
             return redirect()->route('admin.pages');
         }
 
-        $pages = (new Page())->getLocaleGroupedPages();
+        $pages = (new Page())->getLocaleGroupedItems();
 
         return view('admin.pages.delete', [
             'requested' => $requested,
