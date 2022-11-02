@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Category extends Model
 {
-    use HasFactory;
+    use HasFactory, BasicModelTrait;
 
     protected $fillable = [
         'locale',
@@ -38,22 +38,22 @@ class Category extends Model
         return $pages;
     }
 
-    public function getLocaleGroupedItems()
-    {
-        $pages = self::all();
-        $result = [];
-        $counted = count($pages);
-
-        for ($i = 0; $i < $counted; $i++) {
-            foreach ($pages as $page) {
-                if ($page->group === $i) {
-                    $result[$i][] = $page;
-                }
-            }
-        }
-
-        return $result;
-    }
+//    public function getLocaleGroupedItems()
+//    {
+//        $pages = self::all();
+//        $result = [];
+//        $counted = count($pages);
+//
+//        for ($i = 0; $i < $counted; $i++) {
+//            foreach ($pages as $page) {
+//                if ($page->group === $i) {
+//                    $result[$i][] = $page;
+//                }
+//            }
+//        }
+//
+//        return $result;
+//    }
 
     public function getGroup(): int
     {

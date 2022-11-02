@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Page extends Model
 {
-    use HasFactory;
+    use HasFactory, BasicModelTrait;
 
     protected $fillable = [
         'title',
@@ -23,30 +23,22 @@ class Page extends Model
         'isEditable' => 1,
     ];
 
-    public function getLocaleGroupedPages()
-    {
-     $pages = self::all();
-     $result = [];
-     $counted = count($pages);
-
-     for ($i = 0; $i < $counted; $i++) {
-         foreach ($pages as $page) {
-             if ($page->group === $i) {
-                 $result[$i][] = $page;
-             }
-         }
-     }
-
-     return $result;
-    }
-
-    public function getGroup()
-    {
-        $locale = config('app.locale');
-        $data = self::where('locale', $locale)->get();
-        $group = count($data);
-        return ++$group;
-    }
+//    public function getLocaleGroupedPages()
+//    {
+//     $pages = self::all();
+//     $result = [];
+//     $counted = count($pages);
+//
+//     for ($i = 0; $i < $counted; $i++) {
+//         foreach ($pages as $page) {
+//             if ($page->group === $i) {
+//                 $result[$i][] = $page;
+//             }
+//         }
+//     }
+//
+//     return $result;
+//    }
 
     public function getUpdateRules(self $page, $key)
     {
