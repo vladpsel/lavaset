@@ -21,4 +21,27 @@ class Component extends Model
     protected $attributes = [
         'isVisible' => 1,
     ];
+
+    public function updateCommonFields(self $page)
+    {
+        $pages = self::where([
+            ['group', '=', $page->group],
+            ['id', '!=', $page->id],
+        ])->get();
+
+        foreach ($pages as $single) {
+            $single->update($this->getCommonFields($page));
+        }
+
+        return $pages;
+    }
+
+    private function getCommonFields(self $page) {
+        return [
+            'sort_order' => $page->sort_order,
+            'picture' => $page->picture,
+            'isVisible' => $page->isVisible,
+        ];
+    }
+
 }

@@ -47,4 +47,7 @@ Route::prefix('categories')->group(function () {
 
 Route::prefix('components')->group(function () {
     Route::match(['get', 'post'], '/', [AdminComponentsController::class, 'index'])->name('admin.components');
+    Route::match(['get', 'post'], '/{id}', [AdminComponentsController::class, 'update'])
+        ->where('id', '[0-9]+')
+        ->name('admin.components.single');
 });
