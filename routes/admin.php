@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\AdminCategoryController;
 use App\Http\Controllers\Admin\AdminComponentsController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\AdminPageController;
+use App\Http\Controllers\Admin\AdminProductController;
 use App\Http\Controllers\Admin\AdminSecurityController;
 use Illuminate\Support\Facades\Route;
 
@@ -18,12 +19,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::match(['get', 'post'], '/login', [AdminSecurityController::class, 'login'])
-    ->name('admin.login');
-
-
+Route::match(['get', 'post'], '/login', [AdminSecurityController::class, 'login'])->name('admin.login');
 Route::get('dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
 Route::get('clear-asset/{path}/{file?}', [AdminController::class, 'removePicture'])->name('admin.remove.asset');
+
 
 Route::prefix('pages')->group(function() {
     Route::match(['get', 'post'], '/', [AdminPageController::class, 'index'])->name('admin.pages');
@@ -54,3 +53,8 @@ Route::prefix('components')->group(function () {
         ->where('id', '[0-9]+')
         ->name('admin.components.single.delete');
 });
+
+Route::prefix('products')->group(function (){
+    Route::match(['get', 'post'], '/', [AdminProductController::class, 'index'])->name('admin.products');
+});
+
