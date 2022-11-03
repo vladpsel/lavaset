@@ -63,8 +63,31 @@ svg
   margin-bottom: 1rem
   color: $text-white
 
-.components-list
+.component-list
   max-height: 20rem
   overflow: auto
+  label
+    display: flex
+    justify-content: flex-start
+    align-items: center
+    flex-wrap: nowrap
+    position: relative
+    overflow: hidden
+    cursor: pointer
+    padding: .5rem 0
+    .checkmark
+      width: 10px
+      height: 10px
+      margin-right: 1rem
+      flex: 0 0 auto
+      background: $color-one
+    input
+      opacity: 0
+      position: absolute
+      top: -100%
+      left: -100%
+      &:checked
+        ~ .checkmark
+          background: $color-three
 
 @import './admin/media'

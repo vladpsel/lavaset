@@ -71,13 +71,17 @@
                   <label class="label">Порядковий номер</label>
                   <input type="number" name="sort_order" value="{{ $sort_order }}">
               </fieldset>
-              <h3 class="subtitle">Компоненти</h3>
+              <h3 class="subtitle mb-1">Компоненти</h3>
               <ul class="component-list">
-                  <li>
-                      <label class="label">
-
-                      </label>
-                  </li>
+                  @foreach($components as $component)
+                      <li>
+                          <label>
+                              <input type="checkbox" name="components[]" value="{{ $component->group }}">
+                              <span class="checkmark"></span>
+                              <span class="check-label">{{ $component->title }}</span>
+                          </label>
+                      </li>
+                  @endforeach
               </ul>
 
           </div>
@@ -85,7 +89,7 @@
           <div class="flex two-of-three">
               <fieldset class="two-of-four">
                   <label class="label">Назва</label>
-                  <input type="text" name="title" required>
+                  <input type="text" name="title" value="{{ request()->input('title', old('title')) }}" required>
               </fieldset>
               <fieldset class="two-of-four">
                   <label class="label">Аліас</label>
@@ -101,17 +105,17 @@
 
               <fieldset class="full">
                   <label class="label">Опис</label>
-                  <textarea name="description" cols="30" rows="10"></textarea>
+                  <textarea name="description" cols="30" rows="10">{{ request()->input('description', old('description')) }}</textarea>
               </fieldset>
 
               <fieldset class="one-of-four">
                   <label class="label">Ціна</label>
-                  <input type="number" name="price" step="0.01" min="0.01" required>
+                  <input type="number" name="price" value="{{ request()->input('price', old('price')) }}" step="0.01" min="0.01" required>
               </fieldset>
 
               <fieldset class="one-of-four">
                   <label class="label">Вага</label>
-                  <input type="number" name="weight">
+                  <input type="number" name="weight" {{ request()->input('weight', old('weight')) }}>
               </fieldset>
 
               <fieldset class="one-of-four">

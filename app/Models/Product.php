@@ -9,6 +9,26 @@ class Product extends Model
 {
     use HasFactory, BasicModelTrait;
 
+    protected $fillable = [
+        'locale',
+        'group',
+        'category_id',
+        'title',
+        'alias',
+        'description',
+        'price',
+        'weight',
+        'parameter',
+        'picture',
+        'components',
+        'sort_order',
+        'is_visible',
+    ];
+
+    protected $attributes = [
+        'is_visible' => 1,
+    ];
+
     public function getWeightIndicators()
     {
         return [
