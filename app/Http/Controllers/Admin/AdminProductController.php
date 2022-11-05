@@ -81,12 +81,47 @@ class AdminProductController extends Controller
             return redirect()->route('admin.products');
         }
 
+        if ($this->request->isMethod('post')) {
+
+            if ($this->request->has('remove_pic')) {
+                $updated = $this->fileHelper->removeFile($product->picture, 'upload/product');
+                if ($updated) {
+                    $product->update(['picture' => null]);
+                }
+                return back();
+            }
+
+            if ($this->request->has('submit')) {
+                $validated = $this->request->validate([
+                    'title' => 'required',
+                    'alias' => $product->getAliasRule(),
+                    'description' => 'present',
+                    'price' => 'required',
+                    'weight' => 'present',
+                    'parameter' => 'present',
+                    'picture' => 'image',
+                    'category_id' => 'required',
+                    'sort_order' => 'present',
+                    'is_visible' => 'present',
+                ]);
+
+                $data = $validated;
+                $data['components'] = json_encode($this->request->input('components'));
+                $data['picture'] = $this->fileHelper->updateFile($product->picture, 'picture', 'upload/product');
+                $product->update($data);
+                $product->updateCommonFields($product);
+                return back()->with('message', 'Товар успішно оновлено');
+            }
+
+        }
+
         return view('admin.products.update', [
             'entity' => $product,
             'items' => $product->getLocaleGroupedItems(),
             'indicators' => $product->getWeightIndicators(),
             'categories' => Category::where('locale', $this->locale)->get(),
             'components' => Component::where('locale', $this->locale)->get(),
+            'itemComponents' => $product->getComponents(json_decode($product->components, true)),
         ]);
     }
 

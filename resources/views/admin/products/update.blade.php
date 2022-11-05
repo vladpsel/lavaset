@@ -56,11 +56,19 @@
 
           <div class="one-of-three">
               <fieldset>
+                  <label class="label">Видимість на сайті</label>
+                  <select name="is_visible">
+                      <option value="0" @if($entity->is_visible == '0') selected @endif>Приховано</option>
+                      <option value="1" @if($entity->is_visible == '1') selected @endif>На сайті</option>
+                  </select>
+              </fieldset>
+              <fieldset>
                   <label class="label">Зображення: <span class="notice">{{ $entity->picture }}</span> </label>
-                  <input type="file" name="picture">
-                  <button cl>
+                  @if(!empty($entity->picture))
+                      <button type="submit" name="remove_pic" class="flex error mb-1">Видалити зображення</button>
+                  @endif
 
-                  </button>
+                  <input type="file" name="picture">
               </fieldset>
               <fieldset>
                   <label class="label">Категорія</label>
@@ -73,14 +81,16 @@
               </fieldset>
               <fieldset>
                   <label class="label">Порядковий номер</label>
-                  <input type="number" name="sort_order" value="{{ $entity->sort_order }}">
+                  <input type="number" name="sort_order" value="{{ request()->input('sort_order', $entity->sort_order) }}">
               </fieldset>
               <h3 class="subtitle mb-1">Компоненти</h3>
               <ul class="component-list">
                   @foreach($components as $component)
                       <li>
                           <label>
-                              <input type="checkbox" name="components[]" value="{{ $component->group }}">
+                              <input type="checkbox" name="components[]" value="{{ $component->group }}"
+                                     @if(in_array($component->group, $itemComponents)) checked @endif
+                              >
                               <span class="checkmark"></span>
                               <span class="check-label">{{ $component->title }}</span>
                           </label>
@@ -114,19 +124,19 @@
 
               <fieldset class="one-of-four">
                   <label class="label">Ціна</label>
-                  <input type="number" name="price" value="{{ request()->input('weight', $entity->price) }}" step="0.01" min="0.01" required>
+                  <input type="number" name="price" value="{{ request()->input('price', $entity->price) }}" step="0.01" min="0.01" required>
               </fieldset>
 
               <fieldset class="one-of-four">
                   <label class="label">Вага</label>
-                  <input type="number" name="weight" {{ request()->input('weight', old('weight')) }}>
+                  <input type="number" name="weight" {{ request()->input('weight', $entity->weight) }}>
               </fieldset>
 
               <fieldset class="one-of-four">
                   <label class="label">Од. вимірювання</label>
                   <select name="parameter">
                       @foreach($indicators as $id => $indicator)
-                          <option value="{{ $id }}"> {{ $indicator }}</option>
+                          <option value="{{ $id }}" @if($entity->parameter === $id) selected @endif> {{ $indicator }}</option>
                       @endforeach
                   </select>
               </fieldset>
