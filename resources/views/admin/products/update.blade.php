@@ -1,6 +1,6 @@
 @extends('admin.layout')
 
-@section('title', 'Створити товар | Lavaset')
+@section('title', 'Оновити товар ' . $entity->title . ' | Lavaset')
 
 @section('content')
 <div id="admin">
@@ -45,9 +45,10 @@
       @csrf
 
       <div class="flex f-between v-center">
-        <h1 class="title-main item mb-1">Товар</h1>
+        <h1 class="title-main item mb-1">Товар: {{ $entity->title }}</h1>
         <div class="btn-group item mb-1">
-          <button type="submit" name="submit" class="btn btn-main primary">Створити новий</button>
+            <a href="{{ route('admin.products.single.delete', $entity->group) }}" class="btn btn-main alert">Видалити</a>
+          <button type="submit" name="submit" class="btn btn-main primary">Оновити</button>
         </div>
       </div>
 
@@ -55,21 +56,24 @@
 
           <div class="one-of-three">
               <fieldset>
-                  <label class="label">Зображення</label>
+                  <label class="label">Зображення: <span class="notice">{{ $entity->picture }}</span> </label>
                   <input type="file" name="picture">
+                  <button cl>
+
+                  </button>
               </fieldset>
               <fieldset>
                   <label class="label">Категорія</label>
                   <select name="category_id">
-                      <option value="null" disabled selected>Без категорії</option>
+                      <option value="null" disabled @if(empty($entity->category_id)) selected @endif>Без категорії</option>
                       @foreach($categories as $category)
-                          <option value="{{ $category->group }}">{{ $category->title }}</option>
+                          <option value="{{ $category->group }}" @if($entity->category_id === $category->id) selected @endif>{{ $category->title }}</option>
                       @endforeach
                   </select>
               </fieldset>
               <fieldset>
                   <label class="label">Порядковий номер</label>
-                  <input type="number" name="sort_order" value="{{ $sort_order }}">
+                  <input type="number" name="sort_order" value="{{ $entity->sort_order }}">
               </fieldset>
               <h3 class="subtitle mb-1">Компоненти</h3>
               <ul class="component-list">
@@ -89,11 +93,11 @@
           <div class="flex two-of-three">
               <fieldset class="two-of-four">
                   <label class="label">Назва</label>
-                  <input type="text" name="title" value="{{ request()->input('title', old('title')) }}" required>
+                  <input type="text" name="title" value="{{ request()->input('title', $entity->title) }}" required>
               </fieldset>
               <fieldset class="two-of-four">
                   <label class="label">Аліас</label>
-                  <input type="text" name="alias" value="{{ request()->input('alias', old('alias')) }}" class="translit-input" required>
+                  <input type="text" name="alias" value="{{ request()->input('alias', $entity->alias) }}" class="translit-input" required>
                   @error('alias')
                   <p class="notice mb-1 full error"> {{ $message }} </p>
                   @enderror
@@ -105,12 +109,12 @@
 
               <fieldset class="full">
                   <label class="label">Опис</label>
-                  <textarea name="description" cols="30" rows="10">{{ request()->input('description', old('description')) }}</textarea>
+                  <textarea name="description" cols="30" rows="10">{{ request()->input('description', $entity->description) }}</textarea>
               </fieldset>
 
               <fieldset class="one-of-four">
                   <label class="label">Ціна</label>
-                  <input type="number" name="price" value="{{ request()->input('price', old('price')) }}" step="0.01" min="0.01" required>
+                  <input type="number" name="price" value="{{ request()->input('weight', $entity->price) }}" step="0.01" min="0.01" required>
               </fieldset>
 
               <fieldset class="one-of-four">

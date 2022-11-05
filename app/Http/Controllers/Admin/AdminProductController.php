@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Helpers\FileHelper;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Component;
@@ -23,12 +24,14 @@ class AdminProductController extends Controller
      * @var \Illuminate\Config\Repository|Application|mixed
      */
     private mixed $locales;
+    private FileHelper $fileHelper;
 
-    public function __construct(Request $request)
+    public function __construct(Request $request, FileHelper $fileHelper)
     {
         $this->request = $request;
         $this->locale = config('app.locale');
         $this->locales = config('app.available_locales');
+        $this->fileHelper = $fileHelper;
     }
 
     public function index(): View|Factory|Application|RedirectResponse
@@ -50,6 +53,7 @@ class AdminProductController extends Controller
 
             $data = $validated;
             $data['components'] = json_encode($this->request->input('components'));
+            $data['picture'] = $this->fileHelper->uploadFile('picture', 'upload/product');
             $data['group'] = $product->getGroup();
 
             foreach ($this->locales as $locale) {
@@ -68,4 +72,43 @@ class AdminProductController extends Controller
             'components' => Component::where('locale', $this->locale)->get(),
         ]);
     }
+
+    public function update(int $id)
+    {
+        $product = Product::find($id);
+
+        if (!$product) {
+            return redirect()->route('admin.products');
+        }
+
+        return view('admin.products.update', [
+            'entity' => $product,
+            'items' => $product->getLocaleGroupedItems(),
+            'indicators' => $product->getWeightIndicators(),
+            'categories' => Category::where('locale', $this->locale)->get(),
+            'components' => Component::where('locale', $this->locale)->get(),
+        ]);
+    }
+
+    public function delete(int $id): View|Factory|RedirectResponse|Application
+    {
+        $requested = Product::where('group', $id)->get();
+
+        if (count($requested) < 1) {
+            return back();
+        }
+
+        if ($this->request->isMethod('post') && $this->request->has('submit')) {
+            foreach ($requested as $item) {
+                $item->delete();
+            }
+            return redirect()->route('admin.products')->with('message', 'Товар було видалено');
+        }
+
+        return view('admin.products.delete', [
+            'requested' => $requested,
+            'items' => (new Product())->getLocaleGroupedItems(),
+        ]);
+    }
+
 }
