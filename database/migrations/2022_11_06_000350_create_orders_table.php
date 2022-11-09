@@ -15,6 +15,14 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
+            $table->string('user', 255)->nullable();
+            $table->string('name', 255);
+            $table->string('phone', 255);
+            $table->text('details')->nullable();
+            $table->text('comment')->nullable();
+            $table->text('products')->nullable();
+            $table->float('total')->nullable();
+            $table->text('status', 255)->nullable();
             $table->timestamps();
         });
     }

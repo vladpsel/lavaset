@@ -27,6 +27,7 @@ class Product extends Model
 
     protected $attributes = [
         'is_visible' => 1,
+        'category_id' => null,
     ];
 
     public function getWeightIndicators()

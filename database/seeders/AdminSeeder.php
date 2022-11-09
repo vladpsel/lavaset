@@ -20,6 +20,7 @@ class AdminSeeder extends Seeder
             'id' => 1,
             'name' => 'Admin',
             'email' => 'wabiwasabi@gmail.com',
+            'phone' => '+380 12 345 67 89',
             'password' => Hash::make('password'),
         ]);
 
@@ -32,6 +33,7 @@ class AdminSeeder extends Seeder
             'id' => 2,
             'name' => 'User',
             'email' => 'user@gmail.com',
+            'phone' => '+380 12 345 67 80',
             'password' => Hash::make('password'),
         ]);
 
