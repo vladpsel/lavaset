@@ -67,11 +67,11 @@ Route::prefix('products')->group(function (){
 
 Route::prefix('orders')->group(function (){
     Route::match(['get', 'post'], '/', [AdminOrderController::class, 'index'])->name('admin.orders');
-//    Route::match(['get', 'post'], '/{id}', [AdminProductController::class, 'update'])
-//        ->where('id', '[0-9]+')
-//        ->name('admin.products.single');
-//    Route::match(['get', 'post'], '/{id}/delete', [AdminProductController::class, 'delete'])
-//        ->where('id', '[0-9]+')
-//        ->name('admin.products.single.delete');
+    Route::match(['get', 'post'], '/{id}', [AdminOrderController::class, 'update'])
+        ->where('id', '[0-9]+')
+        ->name('admin.orders.single');
+    Route::match(['get', 'post'], '/{id}/delete', [AdminOrderController::class, 'delete'])
+        ->where('id', '[0-9]+')
+        ->name('admin.orders.single.delete');
 });
 

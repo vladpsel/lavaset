@@ -47,4 +47,46 @@ class AdminOrderController extends Controller
             'products' => Product::where('locale', $this->locale)->get(),
         ]);
     }
+
+    public function update(int $id)
+    {
+        $order = Order::find($id);
+
+        if (!$id || !$order) {
+            return redirect()->route('admin.orders');
+        }
+
+        $order->details = json_decode($order->details, true);
+        $order->products = json_decode($order->products, true);
+
+//        dd($order->products);
+
+        return view('admin.orders.update', [
+            'items' => $order->all(),
+            'conditions' => $order->orderConditions,
+            'order' => $order,
+            'products' => Product::where('locale', $this->locale)->get(),
+        ]);
+    }
+
+    public function delete(int $id)
+    {
+        $order = Order::find($id);
+
+        if (!$id || !$order) {
+            return redirect()->route('admin.orders');
+        }
+
+        if ($this->request->isMethod('post') && $this->request->has('submit')) {
+            $order->delete();
+            return redirect()->route('admin.orders');
+        }
+
+        return view('admin.orders.delete', [
+            'items' => $order->all(),
+            'order' => $order,
+        ]);
+    }
+
+
 }
