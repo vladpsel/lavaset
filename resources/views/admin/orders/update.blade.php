@@ -85,7 +85,7 @@
               <h3 class="subtitle mb-1">Деталі</h3>
               <fieldset>
                   <label class="label">Тип доставки</label>
-                  <select name="details['type']">
+                  <select name="details[type]">
                       <option value="delivery" @if($order->details['type'] === 'delivery') selected @endif>Доставка</option>
                       <option value="pickup" @if($order->details['type'] === 'pickup') selected @endif>Самовивіз</option>
                   </select>

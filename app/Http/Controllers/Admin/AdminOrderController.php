@@ -5,13 +5,17 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Order;
 use App\Models\Product;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
 class AdminOrderController extends Controller
 {
 
     /**
-     * @var \Illuminate\Config\Repository|\Illuminate\Contracts\Foundation\Application|mixed
+     * @var \Illuminate\Config\Repository|Application|mixed
      */
     private mixed $locale;
     private Request $request;
@@ -59,7 +63,16 @@ class AdminOrderController extends Controller
         $order->details = json_decode($order->details, true);
         $order->products = json_decode($order->products, true);
 
-//        dd($order->products);
+        if ($this->request->isMethod('post') && $this->request->has('submit')) {
+            $validated = $this->request->validate($order->validationRules);
+
+            $data = $this->request->except('_token', 'submit');
+            $data['details'] = json_encode($validated['details']);
+            $data['products'] = json_encode($validated['products']);
+
+            $order->update($data);
+            return redirect()->route('admin.orders')->with('message', 'Замовлення було оновлено');
+        }
 
         return view('admin.orders.update', [
             'items' => $order->all(),
@@ -69,7 +82,7 @@ class AdminOrderController extends Controller
         ]);
     }
 
-    public function delete(int $id)
+    public function delete(int $id): View|Factory|RedirectResponse|Application
     {
         $order = Order::find($id);
 
