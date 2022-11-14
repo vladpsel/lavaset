@@ -52,7 +52,6 @@ class FileHelper
 
         if (!empty($existFilename) && $existFilename !== '' && file_exists($path . '/' . $existFilename)) {
             unlink(public_path($path . '/' . $existFilename));
-            return true;
         }
         return null;
     }

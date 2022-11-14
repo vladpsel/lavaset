@@ -11,7 +11,9 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
+use Illuminate\Testing\Fluent\Concerns\Has;
 
 class AdminUserController extends Controller
 {
@@ -35,7 +37,10 @@ class AdminUserController extends Controller
 
             $validated = $this->request->validate($rules);
 
+            $validated['password'] = Hash::make($validated['password']);
+
             $user = $user->create($validated);
+
             $data = [
                 'user_id' => $user->id,
                 'role' => $validated['role'],
