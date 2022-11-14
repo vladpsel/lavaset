@@ -66,6 +66,9 @@
                           <option value="{{ $category->group }}">{{ $category->title }}</option>
                       @endforeach
                   </select>
+                  @error('category_id')
+                  <p class="notice mb-1 full error"> {{ $message }} </p>
+                  @enderror
               </fieldset>
               <fieldset>
                   <label class="label">Порядковий номер</label>
@@ -90,6 +93,9 @@
               <fieldset class="two-of-four">
                   <label class="label">Назва</label>
                   <input type="text" name="title" value="{{ request()->input('title', old('title')) }}" required>
+                  @error('title')
+                  <p class="notice mb-1 full error"> {{ $message }} </p>
+                  @enderror
               </fieldset>
               <fieldset class="two-of-four">
                   <label class="label">Аліас</label>
@@ -106,16 +112,25 @@
               <fieldset class="full">
                   <label class="label">Опис</label>
                   <textarea name="description" cols="30" rows="10">{{ request()->input('description', old('description')) }}</textarea>
+                  @error('parameter')
+                  <p class="notice mb-1 full error"> {{ $message }} </p>
+                  @enderror
               </fieldset>
 
               <fieldset class="one-of-four">
                   <label class="label">Ціна</label>
                   <input type="number" name="price" value="{{ request()->input('price', old('price')) }}" step="0.01" min="0.01" required>
+                  @error('price')
+                  <p class="notice mb-1 full error"> {{ $message }} </p>
+                  @enderror
               </fieldset>
 
               <fieldset class="one-of-four">
                   <label class="label">Вага</label>
                   <input type="number" name="weight" {{ request()->input('weight', old('weight')) }}>
+                  @error('weight')
+                  <p class="notice mb-1 full error"> {{ $message }} </p>
+                  @enderror
               </fieldset>
 
               <fieldset class="one-of-four">
@@ -125,6 +140,9 @@
                           <option value="{{ $id }}"> {{ $indicator }}</option>
                       @endforeach
                   </select>
+                  @error('parameter')
+                  <p class="notice mb-1 full error"> {{ $message }} </p>
+                  @enderror
               </fieldset>
 
           </div>

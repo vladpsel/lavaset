@@ -47,7 +47,6 @@ class AdminProductController extends Controller
                 'weight' => 'present',
                 'parameter' => 'present',
                 'picture' => 'image',
-                'category_id' => 'required',
                 'sort_order' => 'present',
             ]);
 
