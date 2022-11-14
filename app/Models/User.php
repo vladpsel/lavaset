@@ -13,6 +13,11 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
+    public array $allowedRoles = [
+      'admin' => 'Адміністратор',
+      'user' => 'Користувач',
+    ];
+
     /**
      * The attributes that are mass assignable.
      *
@@ -22,6 +27,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'phone',
     ];
 
     /**
@@ -56,8 +62,28 @@ class User extends Authenticatable
         return $this->hasOne(UserRoles::class);
     }
 
-    private function getRole(): ?string
+    public function getRules(): array
     {
-        return self::role()->first()->role;
+        return [
+            'name' => 'required|min:2',
+            'email' => 'required|unique:users,email,' . $this->id,
+            'password' => 'required|min:6',
+        ];
     }
+
+    public function getRole(): ?string
+    {
+        $roles = self::role()->first();
+
+        if (!$roles) {
+            return null;
+        }
+
+        if (property_exists($roles, 'role')) {
+            return null;
+        }
+
+        return $roles->role;
+    }
+
 }

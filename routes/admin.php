@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\AdminOrderController;
 use App\Http\Controllers\Admin\AdminPageController;
 use App\Http\Controllers\Admin\AdminProductController;
 use App\Http\Controllers\Admin\AdminSecurityController;
+use App\Http\Controllers\Admin\AdminUserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -73,5 +74,15 @@ Route::prefix('orders')->group(function (){
     Route::match(['get', 'post'], '/{id}/delete', [AdminOrderController::class, 'delete'])
         ->where('id', '[0-9]+')
         ->name('admin.orders.single.delete');
+});
+
+Route::prefix('counterparties')->group(function () {
+    Route::match(['get', 'post'], '/', [AdminUserController::class, 'index'])->name('admin.users');
+    Route::match(['get', 'post'], '/{id}', [AdminUserController::class, 'update'])
+        ->where('id', '[0-9]+')
+        ->name('admin.users.single');
+    Route::match(['get', 'post'], '/{id}/delete', [AdminUserController::class, 'delete'])
+        ->where('id', '[0-9]+')
+        ->name('admin.users.single.delete');
 });
 
