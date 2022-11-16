@@ -1,0 +1,66 @@
+// Desktop
+@media (max-width: $desktop)
+    .one-of-five,
+    .two-of-five,
+    .three-of-five,
+    .four-of-five
+        flex: 1 1 50%
+        width: 50%
+
+    .list-two-items,
+    .list-three-items,
+    .list-four-items
+        > li
+            flex: 1 1 50%
+            width: 50%
+            max-width: 50%
+            margin-bottom: 1rem
+        &.mx
+            > li
+                max-width: 50%
+
+// Laptop
+@media (max-width: $laptop)
+    .one-of-three,
+    .two-of-three,
+    .one-of-four,
+    .two-of-four,
+    .one-of-five,
+    .two-of-five,
+    .three-of-five
+        flex: 1 1 50%
+        width: 50%
+
+// For mobile
+@media (max-width: $mobile)
+    .one-of-three,
+    .two-of-three,
+    .one-of-four,
+    .two-of-four,
+    .three-of-four,
+    .one-of-five,
+    .two-of-five,
+    .three-of-five,
+    .four-of-five
+        flex: 1 1 100%
+        width: 100%
+        &.mx-w
+            max-width: none
+
+    .list-three-items,
+    .list-four-items
+        > li
+            flex: 1 1 100%
+            width: 100%
+            max-width: none
+            padding: 0
+            margin-bottom: 1.9rem
+        &.mx-w
+            > li
+                max-width: none
+
+    .list
+        justify-content: center
+
+    .title-main
+        font-size: 2em
