@@ -38,6 +38,7 @@ class LocaleChecker
                 app()->setLocale($locale);
                 return $next($request);
             }
+
             app()->setLocale($defaultLocale);
             abort(404);
         }

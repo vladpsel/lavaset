@@ -1,0 +1,111 @@
+.header,
+section,
+article,
+.wrapper,
+.flex,
+.footer
+  display: flex
+  flex-wrap: wrap
+  width: 100%
+
+.header,
+section,
+.footer
+  justify-content: center
+
+.wrapper
+  padding: 0 5%
+
+.full
+  width: 100%
+
+.one-of-four
+  flex: 1 1 25%
+  &.mx-w
+    max-width: 25%
+
+.two-of-four
+  flex: 1 1 50%
+  &.mx-w
+    max-width: 50%
+
+.three-of-four
+  flex: 1 1 75%
+  &.mx-w
+    max-width: 75%
+
+.one-of-three
+  flex: 1 1 33.33%
+  &.mx-w
+    max-width: 33%
+
+.two-of-three
+  flex: 1 1 66.66%
+  &.mx-w
+    max-width: 66%
+
+.one-of-five
+  flex: 1 1 20%
+
+.two-of-five
+  flex: 1 1 40%
+
+.three-of-five
+  flex: 1 1 60%
+
+.four-of-five
+  flex: 1 1 77%
+
+.one-of-six
+  flex: 1 1 16%
+  &.mx-w
+    max-width: 16%
+
+.w-auto
+  width: auto
+
+.full,
+.one-of-four,
+.two-of-four,
+.three-of-four,
+.one-of-three,
+.two-of-three,
+.one-of-five,
+.two-of-five,
+.three-of-five,
+.four-of-five,
+.one-of-six
+  padding: 0 1rem
+
+.v-top
+  align-items: flex-start
+
+.v-center
+  align-items: center
+
+.v-bot
+  align-items: flex-end
+
+.f-left
+  justify-content: flex-start
+
+.f-center
+  justify-content: center
+
+.f-right
+  justify-content: flex-end
+
+.f-between
+  justify-content: space-between
+
+.f-around
+  justify-content: space-around
+
+.text-center
+  text-align: center
+
+.text-right
+  text-align: right
+
+.np
+  padding: 0

@@ -1,0 +1,41 @@
+button,
+input,
+textarea,
+select,
+legend
+  -webkit-apparance: none
+  -moz-appearance: none
+  appearance: none
+  padding: 0
+  margin: 0
+  border: none
+  background: none
+  outline: none
+  box-shadow: none
+  box-sizing: border-box
+  font-feature-settings: 'pnum' on, 'lnum' on
+  font-variant: lining-nums
+
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus
+  -webkit-text-fill-color: #fff
+  transition: background-color 5000s ease-in-out 0s
+  background: none
+
+
+textarea
+  resize: none
+
+input,
+textarea,
+select
+  cursor: pointer
+  width: 100%

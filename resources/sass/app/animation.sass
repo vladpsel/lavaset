@@ -1,0 +1,72 @@
+[data-animation="animFadeInUp"],
+[data-animation="animFadeInDown"],
+[data-animation="animFadeInRight"],
+[data-animation="animFadeInLeft"]
+    opacity: 0
+
+.animFadeInUp
+    animation: fadeInUp 1.5s
+    &.done
+        opacity: 1
+
+.animFadeInDown
+    animation: fadeInDown 1.5s
+    &.done
+        opacity: 1
+
+.animFadeInLeft
+    animation: fadeInLeft 1.5s
+    &.done
+        opacity: 1
+
+.animFadeInRight
+    animation: fadeInRight 1.5s
+    &.done
+        opacity: 1
+
+@keyframes fadeInUp
+    0%
+        opacity: 0
+        transform: translateY(50px)
+    100%
+        opacity: 1
+        transform: translateY(0)
+
+@keyframes fadeInDown
+    0%
+        opacity: 0
+        transform: translateY(-50px)
+    100%
+        opacity: 1
+        transform: translateY(0)
+
+@keyframes fadeInLeft
+    0%
+        opacity: 0
+        transform: translateX(-50px)
+    100%
+        opacity: 1
+        transform: translateX(0)
+
+@keyframes fadeInRight
+    0%
+        opacity: 0
+        transform: translateX(50px)
+    100%
+        opacity: 1
+        transform: translateX(0)
+
+@keyframes preloader
+    0%
+        transform: scale(1)
+    50%
+        transform: scale(.3)
+    100%
+        transform: scale(1)
+
+@keyframes hidePreloader
+    0%
+        opacity: 1
+    100%
+        opacity: 0
+        display: none
