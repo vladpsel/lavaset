@@ -1,6 +1,6 @@
 <?php
  return array (
-  'sitename' => 'InTimeLogistics',
-  'favicon' => '202211142308favicon.png',
+  'sitename' => NULL,
+  'favicon' => NULL,
   'logo' => NULL,
 );

@@ -27,6 +27,9 @@ Route::get('clear-asset/{path}/{file?}', [AdminController::class, 'removePicture
 
 Route::match(['get', 'post'],'settings', [AdminController::class, 'settings'])->name('admin.settings');
 
+Route::prefix('modules')->group(function() {
+//    Route::get('/', [AdminOrderController::class, 'index'])->name('admin.modules');
+});
 
 Route::prefix('pages')->group(function() {
     Route::match(['get', 'post'], '/', [AdminPageController::class, 'index'])->name('admin.pages');
