@@ -11,4 +11,5 @@ mix
     .copy('resources/css/font.css', 'public/dist/css/font.css')
     .copy('resources/assets/app/img', 'public/dist/img')
     .sass('resources/sass/style.sass', 'public/dist/css/style.css')
+    .js('resources/js/master.js', 'public/dist/js/master.js')
     .setPublicPath('public');

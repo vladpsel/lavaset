@@ -73,9 +73,9 @@
               <fieldset>
                   <label class="label">Категорія</label>
                   <select name="category_id">
-                      <option value="null" disabled @if(empty($entity->category_id)) selected @endif>Без категорії</option>
+                      <option value="null" @if(empty($entity->category_id)) selected @endif>Без категорії</option>
                       @foreach($categories as $category)
-                          <option value="{{ $category->group }}" @if($entity->category_id === $category->id) selected @endif>{{ $category->title }}</option>
+                          <option value="{{ $category->group }}" @if($entity->category_id === $category->group) selected @endif>{{ $category->title }}</option>
                       @endforeach
                   </select>
               </fieldset>
@@ -129,7 +129,7 @@
 
               <fieldset class="one-of-four">
                   <label class="label">Вага</label>
-                  <input type="number" name="weight" {{ request()->input('weight', $entity->weight) }}>
+                  <input type="number" name="weight" value="{{ request()->input('weight', $entity->weight) }}">
               </fieldset>
 
               <fieldset class="one-of-four">

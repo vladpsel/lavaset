@@ -11,5 +11,83 @@ body
   svg
     width: 100%
 
+.mb-1
+  margin-bottom: 1.125rem
+
+p
+  font-weight: 300
+
+.colored
+  color: $color-hightlight
+
+main
+  margin-bottom: 3rem
+
 @import "../blocks/icon-list"
 @import "../blocks/header"
+@import "../blocks/product-list"
+@import "../blocks/footer"
+
+
+.primary
+  padding: 1rem 3rem
+  font-family: $main-font
+  // background: $color-hightlight
+  border: 2px solid $color-hightlight
+  width: auto
+  display: inline-flex
+  border-radius: 1.95rem
+  color: #161616
+  position: relative
+  z-index: 5
+  transition: .3s linear border-color
+  &:hover
+    border-color: rgba(0,0,0,0)
+    &::after
+      opacity: 1
+  &::after
+    opacity: 0
+    content: ""
+    height: 100%
+    width: 100%
+    position: absolute
+    top: 10px
+    right: 2.813rem
+    background: url("/dist/img/cloud.svg") no-repeat center center
+    background-size: contain
+    z-index: 3
+    +animate
+
+.home-greeting
+  position: relative
+  .bg
+    position: absolute
+    top: 0
+    left: 0
+    z-index: 0
+
+.homepage-slider
+  width: 100%
+  z-index: 2
+  .content
+    // padding: 10rem 0 20rem 0
+    padding: 5% 0 8% 0
+    position: relative
+    z-index: 3
+    p
+      margin-bottom: 2rem
+      font-weight: 300
+      font-size: 1.2em
+    .img-left,
+    .img-right
+      position: absolute
+      z-index: 0
+      padding: 0
+      bottom: 0
+    .img-left
+      left: 0
+    .img-right
+      right: 0
+  .title-main
+    font: normal 3.3em/1.5 $title-font
+    margin-bottom: 1.4rem

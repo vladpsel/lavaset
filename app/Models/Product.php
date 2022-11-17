@@ -82,7 +82,7 @@ class Product extends Model
     {
         return [
             'alias' => $this->alias,
-            'picture' => $this->icon,
+            'picture' => $this->picture,
             'category_id' => $this->category_id,
             'price' => $this->price,
             'weight' => $this->weight,
@@ -91,6 +91,34 @@ class Product extends Model
             'sort_order' => $this->sort_order,
             'is_visible' => $this->is_visible,
         ];
+    }
+
+    public static function getRandomProductsByCategory($categoryId): ?array
+    {
+        $scope = self::where([
+            ['locale', app()->getLocale()],
+            ['category_id', $categoryId],
+        ])->get()->toArray();
+
+        if (empty($scope) || count($scope) < 1) {
+            return null;
+        }
+
+        shuffle($scope);
+
+        return array_splice($scope, 0, 8);
+    }
+
+    public static function getWeightIndicator($index)
+    {
+        switch ($index) {
+            case '0': return __('base.indicator.zero');
+            case '1': return __('base.indicator.one');
+            case '2': return __('base.indicator.two');
+            case '3': return __('base.indicator.three');
+            case '4': return __('base.indicator.four');
+            case '5': return __('base.indicator.five');
+        }
     }
 
 }

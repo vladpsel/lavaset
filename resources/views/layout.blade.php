@@ -16,6 +16,7 @@
 @yield('content')
 
 <!-- scrpts -->
+<script src="{{ mix('/dist/js/master.js') }}"></script>
 @yield('scripts')
 </body>
 </html>

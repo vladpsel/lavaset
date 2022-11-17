@@ -48,6 +48,7 @@ class AdminProductController extends Controller
                 'parameter' => 'present',
                 'picture' => 'image',
                 'sort_order' => 'present',
+                'category_id' => 'present',
             ]);
 
             $data = $validated;
@@ -99,7 +100,7 @@ class AdminProductController extends Controller
                     'weight' => 'present',
                     'parameter' => 'present',
                     'picture' => 'image',
-                    'category_id' => 'required',
+                    'category_id' => 'present',
                     'sort_order' => 'present',
                     'is_visible' => 'present',
                 ]);

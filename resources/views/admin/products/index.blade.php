@@ -12,7 +12,6 @@
               <input type="text" placeholder="Пошук">
           </fieldset>
       </form>
-
         @if(count($items) < 1)
             <p>Немає єлементів</p>
         @else
@@ -61,7 +60,7 @@
               <fieldset>
                   <label class="label">Категорія</label>
                   <select name="category_id">
-                      <option value="null" disabled selected>Без категорії</option>
+                      <option value="0" selected>Без категорії</option>
                       @foreach($categories as $category)
                           <option value="{{ $category->group }}">{{ $category->title }}</option>
                       @endforeach
@@ -127,7 +126,7 @@
 
               <fieldset class="one-of-four">
                   <label class="label">Вага</label>
-                  <input type="number" name="weight" {{ request()->input('weight', old('weight')) }}>
+                  <input type="number" name="weight" value="{{ request()->input('weight', old('weight')) }}">
                   @error('weight')
                   <p class="notice mb-1 full error"> {{ $message }} </p>
                   @enderror

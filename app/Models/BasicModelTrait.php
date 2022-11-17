@@ -24,7 +24,6 @@ trait BasicModelTrait
                 }
             }
         }
-
         return $result;
     }
 

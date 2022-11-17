@@ -1,6 +1,7 @@
 {
     "/dist/js/script.js": "/dist/js/script.js",
     "/dist/js/app.js": "/dist/js/app.js",
+    "/dist/js/master.js": "/dist/js/master.js",
     "/dist/css/style.css": "/dist/css/style.css",
     "/dist/css/admin.css": "/dist/css/admin.css",
     "/dist/img/bg.png": "/dist/img/bg.png",
@@ -77,5 +78,17 @@
     "/dist/fonts/ubuntu-v20-latin_cyrillic-ext_cyrillic-regular.ttf": "/dist/fonts/ubuntu-v20-latin_cyrillic-ext_cyrillic-regular.ttf",
     "/dist/fonts/ubuntu-v20-latin_cyrillic-ext_cyrillic-regular.woff": "/dist/fonts/ubuntu-v20-latin_cyrillic-ext_cyrillic-regular.woff",
     "/dist/fonts/ubuntu-v20-latin_cyrillic-ext_cyrillic-regular.woff2": "/dist/fonts/ubuntu-v20-latin_cyrillic-ext_cyrillic-regular.woff2",
-    "/dist/css/font.css": "/dist/css/font.css"
+    "/dist/css/font.css": "/dist/css/font.css",
+    "/dist/img/papyrus.png": "/dist/img/papyrus.png",
+    "/dist/img/left.png": "/dist/img/left.png",
+    "/dist/img/right.png": "/dist/img/right.png",
+    "/dist/img/bg.svg": "/dist/img/bg.svg",
+    "/dist/img/bg2.png": "/dist/img/bg2.png",
+    "/dist/img/clouds-asian-ornament-waves-asian-ornament-japanese-and-chinese-gold-patterns-of-clouds-and-waves_480270-29 (1) 2.png": "/dist/img/clouds-asian-ornament-waves-asian-ornament-japanese-and-chinese-gold-patterns-of-clouds-and-waves_480270-29 (1) 2.png",
+    "/dist/img/left2.png": "/dist/img/left2.png",
+    "/dist/img/right2.png": "/dist/img/right2.png",
+    "/dist/img/cloud.svg": "/dist/img/cloud.svg",
+    "/dist/img/papyrus.svg": "/dist/img/papyrus.svg",
+    "/dist/img/card.svg": "/dist/img/card.svg",
+    "/dist/img/footer.svg": "/dist/img/footer.svg"
 }
