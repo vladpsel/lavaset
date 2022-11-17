@@ -1,0 +1,42 @@
+.header
+  flex-wrap: wrap
+  color: #595959
+  &__top,
+  &__bot
+    display: flex
+    flex-wrap: nowrap
+    align-items: center
+    justify-content: center
+    padding: .7rem 0
+    flex: 1 1 100%
+  li
+    .icon
+      width: 1.8rem
+      flex: 0 0 auto
+  a
+    &:hover
+      color: $color-hightlight
+  &__top
+    a,
+    span
+      font-size: .875em
+  &__bot
+    background: url('/dist/img/bg.png') $color-hightlight repeat
+    a,
+    span
+      color: #fff
+      font-size: .9em
+
+  nav
+    display: flex
+    justify-content: space-between
+    align-items: center
+    a
+      padding: .5rem
+
+.nav-list
+  > li
+    &:not(:last-of-type)
+      border-right: 1px solid #fff
+    a
+      font: normal 400 1em/1.3 $title-font

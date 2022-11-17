@@ -6,6 +6,7 @@ use Closure;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Routing\Route;
 
 class LocaleChecker
 {
@@ -23,7 +24,7 @@ class LocaleChecker
             $localeLenght = strlen($locale);
             $defaultLocale = config('app.locale');
 
-            if (empty($locale) || $localeLenght > 2) {
+            if (empty($locale)) {
                 app()->setLocale($defaultLocale);
                 return $next($request);
             }
@@ -40,7 +41,7 @@ class LocaleChecker
             }
 
             app()->setLocale($defaultLocale);
-            abort(404);
+//            return abort(404);
         }
 
         return $next($request);

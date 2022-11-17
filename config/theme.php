@@ -1,6 +1,6 @@
 <?php
  return array (
-  'sitename' => NULL,
+  'sitename' => 'Wakizashi',
+  'logo' => '202211160238logo.webp',
   'favicon' => NULL,
-  'logo' => NULL,
 );
