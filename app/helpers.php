@@ -24,15 +24,21 @@ function getLink(?string $link): ?string
     $locale = array_shift($parts);
 
     if ($locale === config('app.fallback_locale')) {
-        return implode('/', $parts);
+        return '/' . implode('/', $parts);
     }
 
     return rtrim('/' . $link, '/');
+
 }
 
 function getLangList()
 {
     return config('app.available_locales');
+}
+
+function normalizeLangLink($link)
+{
+    return $link;
 }
 
 function getCategories()

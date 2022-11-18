@@ -31,6 +31,27 @@
         flex: 1 1 50%
         width: 50%
 
+    .list-three-items,
+    .list-four-items
+        > li
+            flex: 1 1 33%
+            width: 33%
+            max-width: none
+        &.mx-w
+            > li
+                max-width: 33%
+
+@media (max-width: $tablets)
+    .list-three-items,
+    .list-four-items
+        > li
+            flex: 1 1 50%
+            width: 50%
+            max-width: none
+        &.mx-w
+            > li
+                max-width: 50%
+
 // For mobile
 @media (max-width: $mobile)
     .one-of-three,

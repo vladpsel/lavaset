@@ -20,4 +20,9 @@ return [
     'indicator.three' => 'л.',
     'indicator.four' => 'шт.',
 
+    'menu' => 'Meню',
+
+    'buy.btn' => 'До кошика',
+    'empty' => 'Немає товарів',
+
 ];

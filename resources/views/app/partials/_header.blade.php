@@ -1,64 +1,79 @@
 <header class="header">
 
-  <div class="header__top">
-    <div class="wrapper v-center f-between">
+  <div class="header-wrapper">
+      <div class="header__top">
+          <div class="wrapper v-center f-between">
 
-      <div class="one-of-three">
-          <nav>
-              @foreach(getPages() as $navPage)
-                  <a href="{{ getlink( app()->getLocale() . '/' . $navPage->alias) }}">{{ $navPage->title }}</a>
-              @endforeach
-          </nav>
+              <div class="one-of-three m-auto">
+                  <div class="burger-wrp">
+                      <button type="button" class="burger">
+                          <span class="burger-line"></span>
+                          <span class="burger-line"></span>
+                          <span class="burger-line"></span>
+                      </button>
+                  </div>
+                  <nav class="nav">
+                      @foreach(getPages() as $navPage)
+                          <a href="{{ getlink( app()->getLocale() . '/' . $navPage->alias) }}">{{ $navPage->title }}</a>
+                      @endforeach
+                  </nav>
+              </div>
+
+              <div class="logo">
+                  {!! getLogo() !!}
+              </div>
+
+              <a href="tel:0123456789" class="call-btn icon">
+                  <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path fill-rule="evenodd" clip-rule="evenodd" d="M15.5332 3.08537C15.0528 3.32583 15.0099 4.00413 15.4566 4.29576C15.5253 4.34064 15.8624 4.43953 16.2056 4.51553C17.2558 4.74804 17.7741 4.91907 18.7148 5.34364C20.0622 5.95179 21.2537 6.79712 22.366 7.93409C23.9715 9.57529 25.0244 11.5483 25.5155 13.836C25.648 14.4535 25.6808 14.5302 25.8726 14.6724C26.1792 14.8997 26.5609 14.8781 26.8097 14.6194C27.0336 14.3865 27.0487 14.2347 26.9136 13.5738C25.9316 8.76991 22.2843 4.79848 17.5635 3.39271C17.0257 3.2326 15.9894 2.99985 15.8146 3C15.7535 3 15.6269 3.03844 15.5332 3.08537ZM6.07598 4.55651C5.44866 4.75648 4.92765 5.19129 3.4593 6.74024C2.40747 7.84989 2.11913 8.40886 2.0214 9.52801C1.88249 11.1189 2.42079 13.133 3.60785 15.4643C4.11016 16.4508 4.33515 16.8333 4.97108 17.7815C7.37129 21.3607 10.5173 24.2147 14.2347 26.1851C16.3414 27.3018 18.1214 27.8753 19.743 27.9597C20.8894 28.0194 21.9077 27.7 22.6726 27.0407C22.7623 26.9634 23.3249 26.4 23.9227 25.7889C24.9126 24.777 25.0282 24.6409 25.2166 24.2664C25.5866 23.531 25.5876 22.8751 25.22 22.1233C25.0223 21.719 24.9718 21.6634 23.2002 19.8973C21.4807 18.1831 21.3634 18.0765 21.0133 17.9105C20.2635 17.5549 19.4927 17.5894 18.7654 18.0109C18.6433 18.0816 18.0878 18.5882 17.5308 19.1367L16.5182 20.134L16.0306 19.8767C13.8783 18.7411 11.0487 15.9027 9.99703 13.8243L9.80896 13.4527L10.7502 12.5071C11.7537 11.499 11.9949 11.1952 12.1569 10.7354C12.3756 10.1147 12.3315 9.51758 12.0207 8.88997C11.8604 8.56628 11.6947 8.38641 10.029 6.72726C8.13306 4.83873 7.98039 4.71155 7.4041 4.54105C7.05338 4.43728 6.42729 4.44455 6.07598 4.55651ZM7.17343 5.97594C7.48009 6.11951 10.6438 9.28692 10.7792 9.58578C11.0336 10.1478 10.9266 10.3331 9.58168 11.6591C8.98301 12.2494 8.45484 12.8077 8.40803 12.8998C8.27055 13.1702 8.32891 13.6645 8.55482 14.1434C9.18434 15.4778 10.2042 16.8231 11.7585 18.3691C13.0341 19.6378 14.3456 20.6204 15.6719 21.3008C16.2265 21.5853 16.3017 21.6109 16.5777 21.6086C16.7708 21.607 16.9401 21.574 17.05 21.5165C17.1443 21.4673 17.7172 20.9388 18.3231 20.3423C18.929 19.7457 19.4999 19.2195 19.5917 19.1729C19.8365 19.0486 20.265 19.0889 20.512 19.2594C20.8583 19.4986 23.8355 22.5221 23.9533 22.7544C24.0968 23.0373 24.0966 23.3567 23.9526 23.6388C23.8469 23.8459 22.2693 25.4944 21.7263 25.965C20.9415 26.6452 19.8387 26.7273 18.0293 26.2403C16.7076 25.8845 14.6673 24.8991 12.9861 23.8045C9.41045 21.4764 6.14031 17.7044 4.48698 14.0008C3.42404 11.6198 3.16199 9.79413 3.72027 8.65887C3.82089 8.45427 4.11986 8.12025 4.9795 7.25189C5.69289 6.5313 6.18771 6.07087 6.32716 5.99794C6.60115 5.85466 6.89802 5.84695 7.17343 5.97594ZM15.2992 7.63416C14.9643 7.83754 14.8459 8.27743 15.0404 8.59526C15.1779 8.81986 15.2977 8.8804 15.8895 9.02432C17.2475 9.35449 18.3367 9.97463 19.2645 10.946C20.1378 11.8603 20.7311 12.9597 20.9922 14.1471C21.0933 14.6071 21.1645 14.7614 21.3383 14.8976C21.7349 15.2085 22.3713 14.9794 22.4629 14.4928C22.5325 14.1229 22.1647 12.8511 21.7432 12.0044C20.6507 9.81043 18.67 8.2304 16.2911 7.65533C15.6972 7.51176 15.5073 7.50771 15.2992 7.63416Z"></path>
+                  </svg>
+              </a>
+
+              <div class="header-contacts one-of-three flex f-right v-center">
+                  <ul class="icon-list list item">
+                      <li>
+                          <div class="icon">
+                              <img src="/dist/img/icons/clock.svg" alt="">
+                          </div>
+                          <span>10:00 - 22:00</span>
+                      </li>
+
+                      <li>
+                          <div class="icon">
+                              <img src="/dist/img/icons/call.svg" alt="">
+                          </div>
+                          <a href="tel:0123456789">+380 12 345 67 89</a>
+                      </li>
+
+                  </ul>
+                  <ul class="lang-list list">
+                      @foreach(getLangList() as $locale)
+                          <li>
+                              <a href="/{{ normalizeLangLink($locale . '/' . \Illuminate\Support\Facades\Request::path()) }}">{{ ucfirst($locale) }}</a>
+                          </li>
+                      @endforeach
+                  </ul>
+              </div>
+
+          </div>
       </div>
-
-      <div class="logo">
-          {!! getLogo() !!}
+      <div class="header__bot">
+          <div class="wrapper f-center">
+              <button class="flex item menu-btn btn m-auto">
+                  <span>{{ __('base.menu') }}</span>
+              </button>
+              <ul class="nav-list icon-list list flex f-center">
+                  @foreach(getCategories() as $navCategory)
+                      <li>
+                          <div class="icon">
+                              <img src="/upload/categories/{{ $navCategory->icon }}" alt="{{ $navCategory->title }} icon">
+                          </div>
+                          <a href="{{ getLink(app()->getLocale() . '/category/' . $navCategory->alias) }}">{{ $navCategory->title }}</a>
+                      </li>
+                  @endforeach
+              </ul>
+          </div>
       </div>
-
-      <div class="one-of-three flex f-right v-center">
-        <ul class="icon-list list item">
-          <li>
-            <div class="icon">
-              <img src="/dist/img/icons/clock.svg" alt="">
-            </div>
-            <span>10:00 - 22:00</span>
-          </li>
-
-          <li>
-            <div class="icon">
-              <img src="/dist/img/icons/call.svg" alt="">
-            </div>
-            <a href="tel:0123456789">+380 12 345 67 89</a>
-          </li>
-
-        </ul>
-
-        <ul class="lang-list list">
-            @foreach(getLangList() as $locale)
-                <li>
-                    <a href="/{{ $locale . '/' . \Illuminate\Support\Facades\Route::currentRouteName() }}">{{ ucfirst($locale) }}</a>
-                </li>
-            @endforeach
-        </ul>
-      </div>
-
-    </div>
-  </div>
-
-
-  <div class="header__bot">
-    <div class="wrapper f-center">
-      <ul class="nav-list icon-list list flex f-center">
-        @foreach(getCategories() as $navCategory)
-          <li>
-            <div class="icon">
-              <img src="/upload/categories/{{ $navCategory->icon }}" alt="{{ $navCategory->title }} icon">
-            </div>
-            <a href="{{ getLink(app()->getLocale() . '/category/' . $navCategory->alias) }}">{{ $navCategory->title }}</a>
-          </li>
-        @endforeach
-      </ul>
-    </div>
   </div>
 
 </header>

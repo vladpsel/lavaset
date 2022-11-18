@@ -15,9 +15,9 @@ function docReady(fn) {
 function homepageSlider() {
     let swiper = new Swiper('.homepage-slider', {
         loop: true,
-        // autoplay: {
-        //     delay: 5000,
-        // }
+        autoplay: {
+            delay: 5000,
+        }
         // pagination: {
         //     el: '.swiper-pagination',
         // },
@@ -31,11 +31,32 @@ function homepageSlider() {
     });
 }
 
+function menus() {
+    let mobileMenuBtn = document.querySelector('.menu-btn');
+    let navList = document.querySelector('.nav-list');
+
+    mobileMenuBtn.addEventListener('click', function(){
+        navList.classList.toggle('active');
+    });
+
+
+    let burger = document.querySelector('.burger');
+    let mainMenu = document.querySelector('.header .nav');
+
+    if (burger) {
+        burger.addEventListener('click', function() {
+            this.classList.toggle('active');
+            mainMenu.classList.toggle('active');
+        })
+    }
+
+}
+
 docReady(function(){
     // getBgImage('[data-bg]');
     homepageSlider();
     // maskPhone();
     // buyBtn();
     // productSetter();
-    // menus();
+    menus();
 });

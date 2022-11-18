@@ -4,11 +4,123 @@
 // Tablets small desktop
 @media (max-width: $laptop)
 
+  // header
+  .header
+    &__top
+      .wrapper
+        flex-wrap: nowrap
+
+  // end header
+
+  .home-greeting .bg
+    display: none
+
+  .homepage-slider
+    .title-main
+      font-size: 2.3em
+    .content
+      justify-content: space-between
+      padding: 0
+      .img-left,
+      .img-right
+        position: static
+        max-width: 33%
+      .img-right
+        margin-left: auto
+
+  .footer
+    .flex
+      justify-content: center
+      text-align: center
+    .logo
+      margin: 0 auto
+
 // Tablets || Horizontal mobile
 @media (max-width: $tablets)
-  .products-list
+
+  // header
+  .header-wrapper
+    position: fixed
+    top: 0
+    left: 0
+    width: 100%
+    z-index: 50
+    background: url('/dist/img/bg.png') $color-one repeat
+
+  .header
+    height: 9.438rem
+    &__top
+      .wrapper
+        flex-wrap: nowrap
+        position: relative
+      .icon
+        width: auto
+    &__bot
+      position: relative
+      .wrapper
+        justify-content: flex-start
+
+  .header-contacts
+    position: fixed
+    bottom: 0
+    left: 0
+    width: 100%
+    justify-content: center
+    padding: .7rem
+    background: $mainbg
+      z-index: 50
+
+  .burger-wrp,
+  .call-btn,
+  .menu-btn
+    display: inline-flex
+    padding: 0 1rem
+    font-family: $main-font
+    svg
+      fill: $color-hightlight
+
+  .header
+    .nav
+      position: absolute
+      top: calc(100% + 0.5rem)
+      left: 0
+      width: 100%
+      height: auto
+      flex-direction: column
+      z-index: 50
+      padding: 0
+      background: url('/dist/img/bg.png') $color-one repeat
+      max-height: 0
+      overflow: hidden
+      transition: 0.3s linear all
+      &.active
+        max-height: 80vh
+        padding: 1.5rem 0
+
+  .nav-list
+    display: flex
+    flex-direction: column
+    +background
+    position: absolute
+    top: 100%
+    left: 100%
+    z-index: 50
+    width: 100%
+    height: auto
+    max-height: 62vh
+    overflow: auto
+    justify-content: space-between
+    padding: 1.5rem 0
+    +animate
+    &.active
+      left: 0
     > li
-      padding: 0 1rem
+      margin-bottom: 1.5rem
+
+  // end header
+  .m-auto
+    width: auto
+    flex: 0 0 auto
 
 // For mobile
 @media (max-width: $mobile)

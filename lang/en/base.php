@@ -22,4 +22,9 @@ return [
     'indicator.three' => 'l.',
     'indicator.four' => 'it.',
 
+    'menu' => 'Meню',
+
+    'buy.btn' => 'Add to cart',
+    'empty' => 'Empty',
+
 ];

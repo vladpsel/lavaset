@@ -1,5 +1,6 @@
 body
   background: url('/dist/img/bg.png') $color-one repeat
+  overflow-x: hidden
 
 .wrapper
   max-width: 82rem
@@ -23,11 +24,19 @@ p
 main
   margin-bottom: 3rem
 
+.call-btn,
+.menu-btn
+  display: none
+
 @import "../blocks/icon-list"
 @import "../blocks/header"
 @import "../blocks/product-list"
 @import "../blocks/footer"
+@import "../blocks/mycopy"
+@import "../blocks/burger"
 
+.first-screen
+  padding: 3.125rem 0
 
 .primary
   padding: 1rem 3rem
