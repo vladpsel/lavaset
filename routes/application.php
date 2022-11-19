@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Application\AppCategoryController;
 use App\Http\Controllers\Application\AppController;
+use App\Http\Controllers\Application\AppProductController;
 use Illuminate\Support\Facades\Route;
 
 //Route::get('{locale}', [AppController::class, 'home'])->where('locale', '([a-z]{2})?');
@@ -16,6 +17,7 @@ use Illuminate\Support\Facades\Route;
 $routes = function () {
     Route::get('/', [AppController::class, 'home']);
     Route::get('category/{id}', [AppCategoryController::class, 'index'])->where('id', '([a-z0-9\-]+)?');
+    Route::get('product/{id}', [AppProductController::class, 'index'])->where('id', '([a-z0-9\-]+)?')->name('public.product');
 };
 
 

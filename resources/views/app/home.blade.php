@@ -107,10 +107,10 @@
                             @endphp
                             <li>
                                 <div class="card">
-                                    <a href="#" class="img-wrp">
+                                    <a href="{{ route('public.product', ['locale' => app()->getLocale(), 'id' => $product['alias']]) }}" class="img-wrp">
                                         <img src="/upload/product/{{ $product['picture'] }}" alt="">
                                     </a>
-                                    <a href="#" class="product-title mb-18">{{ $product['title'] }}</a>
+                                    <a href="{{ route('public.product', ['locale' => app()->getLocale(), 'id' => $product['alias']]) }}" class="product-title mb-18">{{ $product['title'] }}</a>
                                     <ul class="components-list flex mb-24">
                                         @foreach($components as $component)
                                             @if(!empty($product['components']) && in_array($component->group, $product['components']))
@@ -120,7 +120,7 @@
                                     </ul>
                                     <p class="colored">{{ $product['weight'] }} {{ $productModel::getWeightIndicator($product['parameter']) }}</p>
                                     <p class="price text-right mb-22">{{ $product['price'] . ' ' .__('base.currency') }} </p>
-                                    <button type="button" name="button" class="buy-btn btn primary" data-id="{{ $product['group'] }}">В корзину</button>
+                                    <button type="button" name="button" class="buy-btn btn primary" data-id="{{ $product['group'] }}">{{ __('base.buy.btn') }}</button>
                                 </div>
                             </li>
                         @endforeach

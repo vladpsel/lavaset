@@ -20,14 +20,18 @@ function getPages()
 
 function getLink(?string $link): ?string
 {
-    $parts = explode('/', $link);
+    $parts = explode('/', trim($link, '/'));
     $locale = array_shift($parts);
+
+    if (!in_array($locale, config('app.available_locales'))) {
+        return '/' . trim($link, '/');
+    }
 
     if ($locale === config('app.fallback_locale')) {
         return '/' . implode('/', $parts);
     }
 
-    return rtrim('/' . $link, '/');
+    return '/' . trim($link, '/');
 
 }
 
@@ -38,7 +42,7 @@ function getLangList()
 
 function normalizeLangLink($link)
 {
-    return $link;
+    return trim($link, '/');
 }
 
 function getCategories()

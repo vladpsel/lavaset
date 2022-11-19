@@ -4,11 +4,10 @@ namespace App\Http\Controllers\Application;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
-use App\Models\Component;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
-class AppCategoryController extends Controller
+class AppProductController extends Controller
 {
     public function index(string $a, ?string $b = null)
     {
@@ -18,25 +17,22 @@ class AppCategoryController extends Controller
             $alias = $a;
         }
 
-        $category = Category::where([
+        $product = Product::where([
             ['locale', '=', app()->getLocale()],
             ['alias', '=', $alias]
         ])->first();
 
-        if (!$category || empty($category)) {
+        if (!$product || empty($product)) {
             abort(404);
         }
 
-        return view('app.category.index', [
-            'category' => $category,
-            'products' => Product::where([
+
+        return view('app.product.single', [
+            'product' => $product,
+            'category' => Category::where([
                 ['locale', '=', app()->getLocale()],
-                ['category_id', '=', $category->group],
-            ])->get(),
-            'components' => Component::where([
-                ['locale', '=', app()->getLocale()],
-                ['isVisible', '=', 1]
-            ])->orderBy('title', 'asc')->get(),
+                ['group', '=', $product->category_id],
+            ])->first(),
         ]);
     }
 }
