@@ -35,7 +35,8 @@ main
 @import "../blocks/mycopy"
 @import "../blocks/burger"
 @import "../blocks/breadcrumbs"
-@import "../blocks/cart-modal"
+@import "../blocks/cart"
+@import "../blocks/form-main"
 
 .first-screen
   padding: 3.125rem 0
@@ -52,6 +53,8 @@ main
   position: relative
   z-index: 5
   transition: .3s linear border-color
+  &.full
+    width: 100%
   &:hover
     border-color: rgba(0,0,0,0)
     &::after

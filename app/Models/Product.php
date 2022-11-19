@@ -161,4 +161,37 @@ class Product extends Model
         return $next;
     }
 
+    public static function addProductQuantity($products, $params)
+    {
+        $result = [];
+        foreach ($products as $product => $data) {
+            $result[$product]['group'] = $data['group'];
+            $result[$product]['title'] = $data['title'];
+            $result[$product]['price'] = $data['price'];
+            $result[$product]['quantity'] = $params[$data['group']];
+        }
+        return $result;
+    }
+
+    public function inProducts($id, $products)
+    {
+        foreach ($products as $product) {
+            if ($product['group'] == $id) {
+                return 'true';
+            }
+        }
+        return false;
+
+    }
+
+    public function getCurrent($id, $products)
+    {
+        foreach ($products as $product) {
+            if ($product['group'] == $id) {
+                return $product;
+            }
+        }
+        return null;
+    }
+
 }

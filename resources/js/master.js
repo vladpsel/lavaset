@@ -2,6 +2,7 @@ import  {Swiper,  Autoplay, EffectFade, Navigation, Pagination, Thumbs } from 's
 Swiper.use([ EffectFade, Navigation, Pagination, Thumbs, Autoplay]);
 import 'swiper/css';
 import axios from "axios";
+import IMask from "imask";
 
 function docReady(fn) {
     // see if DOM is already available
@@ -78,7 +79,7 @@ function buyBtn() {
 
 function productSetter() {
     let elements = document.querySelectorAll('.count-input input');
-    let counter = document.getElementById('cart-counter');
+    let counter = document.getElementById('product-count');
     let total = document.getElementById('total-price');
 
     if (!elements) {
@@ -116,11 +117,31 @@ function productSetter() {
 
 }
 
+function maskPhone() {
+    let elements = document.querySelectorAll('.phone-input');
+
+    if (!elements) {
+        return;
+    }
+
+    let maskOptions = {
+        mask: '+{38\\0}` #0 000 00 00',
+        definitions: {
+            '#': /[1-9]/
+        },
+    }
+
+    Array.prototype.forEach.call(elements, function(item) {
+        IMask(item, maskOptions)
+    })
+
+}
+
 docReady(function(){
     // getBgImage('[data-bg]');
     homepageSlider();
-    // maskPhone();
+    maskPhone();
     buyBtn();
-    // productSetter();
+    productSetter();
     menus();
 });

@@ -54,4 +54,25 @@ class Cart
         session()->forget('products');
     }
 
+    public static function getValidationRules(): array
+    {
+        return [
+            'name' => 'required|min:2',
+            'phone' => 'required|min:17',
+            'agreement' => 'required',
+        ];
+    }
+
+    public static function getValidationErrorMessages(): array
+    {
+        return [
+            'required' => __('cart.checkout.error.required'),
+            'min' => __('cart.checkout.error.min'),
+            'agreement.required' => __('cart.checkout.error.agreement'),
+            //'numeric' => __('cart.checkout.error.numeric')
+        ];
+    }
+
+
+
 }

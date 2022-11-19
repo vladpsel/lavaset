@@ -1,0 +1,48 @@
+.cart-success
+  position: fixed
+  top: -15%
+  left: 0
+  z-index: 100
+  width: 100%
+
+  display: flex
+  justify-content: center
+  align-items: center
+  flex-wrap: nowrap
+  padding: 3%
+  +animate
+  .content
+    max-width: 20rem
+    background: #4c9960
+    // border: 1px solid #178117
+    padding: 1rem
+    color: #fff
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25)
+    border-radius: .625rem
+    font-weight: 300
+  &.visible
+    top: 10%
+
+.cart-product-list
+  padding: 2rem 1rem
+  background: url('/dist/img/card.svg') #fff repeat
+  background-size: auto
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25)
+  border-radius: 1.875rem
+  margin-bottom: 2rem
+  > li
+    &:not(:last-of-type)
+      margin-bottom: 1rem
+      padding-bottom: 1rem
+      border-bottom: 1px solid #dadada
+  .icon
+    width: .938rem
+  .count-input
+    display: flex
+    flex-wrap: nowrap
+    align-items: center
+    input
+      flex: 0 0 4.688rem
+      text-align: center
+      margin-right: 1rem
+      padding: .5rem

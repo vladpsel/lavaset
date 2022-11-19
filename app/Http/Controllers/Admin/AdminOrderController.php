@@ -36,7 +36,9 @@ class AdminOrderController extends Controller
 
             $data = $this->request->except('_token', 'submit');
             $data['details'] = json_encode($validated['details']);
-            $data['products'] = json_encode($validated['products']);
+
+            $requestedProducts = Product::whereIn('group', array_keys($validated['products']))->where('locale', app()->getLocale())->get();
+            $data['products'] = json_encode(Product::addProductQuantity($requestedProducts->toArray(), $validated['products']));
 
             $created = $order->create($data);
 
@@ -68,16 +70,20 @@ class AdminOrderController extends Controller
 
             $data = $this->request->except('_token', 'submit');
             $data['details'] = json_encode($validated['details']);
-            $data['products'] = json_encode($validated['products']);
+
+            $requestedProducts = Product::whereIn('group', array_keys($validated['products']))->where('locale', app()->getLocale())->get();
+            $data['products'] = json_encode(Product::addProductQuantity($requestedProducts->toArray(), $validated['products']));
 
             $order->update($data);
             return redirect()->route('admin.orders')->with('message', 'Замовлення було оновлено');
         }
 
+
         return view('admin.orders.update', [
             'items' => $order->all(),
             'conditions' => $order->orderConditions,
             'order' => $order,
+            'userProducts' => $order->products,
             'products' => Product::where('locale', $this->locale)->get(),
         ]);
     }

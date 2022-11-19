@@ -127,20 +127,26 @@
               <h3 class="subtitle">Товари</h3>
               <ul class="products-list component-list">
                   @foreach($products as $product)
+
+                      @if($product->inProducts($product->group, $userProducts))
+                             @php($current = $product->getCurrent($product->group, $userProducts))
+                          @else
+                            @php($current = null)
+                      @endif
                       <li>
                           <label class="two-of-four">
                               <input type="checkbox" name="products[{{ $product->group }}]" value="1" data-product-id="{{ $product->group }}"
-                                     @if(array_key_exists($product->group, $order->products)) checked @endif
+                                     @if(!empty($current)) checked @endif
                               >
                               <span class="checkmark"></span>
                               <span class="check-label">{{ $product->title }}</span>
                           </label>
                           <div class="two-of-four flex f-right v-center">
                               <fieldset class="item">
-                                  <input type="number" data-product-quantity="{{ $product->group }}" value="@if(isset($order->products[$product->group])){{$order->products[$product->group]}}@else{{1}}@endif" min="1">
+                                  <input type="number" data-product-quantity="{{ $product->group }}" value="@if(!empty($current)){{ $current['quantity'] }}@else{{1}}@endif" min="1">
                               </fieldset>
                               <p class="item">
-                                  <span data-price-id="{{ $product->group }}">{{ $product->price }}</span> uah.
+                                  <span data-price-id="{{ $product->group }}">@if(!empty($current)){{ $current['price'] }}@else{{$product->price}}@endif</span> uah.
                               </p>
                           </div>
                       </li>

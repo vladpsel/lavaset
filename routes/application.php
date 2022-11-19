@@ -16,6 +16,7 @@ $routes = function () {
 //API
 Route::prefix('api/v1')->group(function(){
     Route::post('cart/add', [AppCartController::class, 'add']);
+    Route::post('cart/set', [AppCartController::class, 'set']);
 });
 
 // Functions for correct work routes with/without prefix

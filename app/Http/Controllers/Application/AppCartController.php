@@ -5,18 +5,58 @@ namespace App\Http\Controllers\Application;
 use App\Features\Cart;
 use App\Http\Controllers\Controller;
 use App\Models\Order;
+use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class AppCartController extends Controller
 {
-    public function __construct(Cart $cart)
+    public function __construct(Request $request, Cart $cart)
     {
         $this->cart = $cart;
+        $this->request = $request;
+        $this->data = $request->except('_token', 'submit');
     }
 
     public function checkout()
     {
-        return view('app.checkout');
+        $cart = new Cart();
+        $productsInCart = session()->get('products');
+
+        if (empty($productsInCart)) {
+            return redirect('/');
+        }
+
+        $products = Product::whereIn('group', array_keys($productsInCart))->where('locale', app()->getLocale())->get();
+
+        if ($this->request->isMethod('post') && $this->request->has('submit')) {
+            $validator = Validator::make(
+                $this->request->all(),
+                $cart::getValidationRules(),
+                $cart::getValidationErrorMessages(),
+            );
+
+            if ($validator->fails()) {
+                return redirect()->back()->withErrors($validator)->withInput();
+            }
+
+            $data = $this->data;
+            $data['products'] = json_encode(Product::addProductQuantity($products->toArray(), $productsInCart));
+            $data['details'] = json_encode($data['details']);
+            $data['total'] = $cart->getTotal();
+            $data['status'] = 'new';
+
+            Order::create($data);
+            session()->forget('products');
+
+            return redirect('/');
+        }
+
+        return view('app.checkout', [
+            'products' => $products,
+            'cartProducts' => $productsInCart,
+            'total' => $cart->getTotal(),
+        ]);
     }
 
     /**
