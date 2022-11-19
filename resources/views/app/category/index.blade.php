@@ -11,7 +11,7 @@
                         <p>{{$category->description}}</p>
                     @endif
                 </div>
-                <ul class="products-list list-four-items list flex mx-w np">
+                <ul class="products-list full list-four-items list flex mx-w">
                     @if(!empty($products) && count($products) >= 1)
                         @foreach($products as $product)
                             @php

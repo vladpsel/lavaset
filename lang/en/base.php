@@ -29,4 +29,7 @@ return [
 
     'get_recommended' => 'Find more',
 
+    'prev.item' => 'Previous',
+    'next.item' => 'Next',
+
 ];

@@ -2,6 +2,8 @@
 
 declare(strict_types=1);
 
+use App\Features\Cart;
+
 function getLogo(): string
 {
     $configFilepath = config_path() . '/theme.php';
@@ -51,4 +53,10 @@ function getCategories()
         ['locale', '=', app()->getLocale()],
         ['isVisible', '=', 1]
     ])->orderBy('group', 'asc')->get();
+}
+
+function getCartCounted()
+{
+    $cart = new Cart();
+    return  $cart->countProducts(session()->get('products'));
 }

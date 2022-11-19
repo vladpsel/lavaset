@@ -72,6 +72,12 @@
                       </li>
                   @endforeach
               </ul>
+              <a href="{{ route('public.cart', app()->getLocale()) }}" class="cart-box icon-item">
+                  <div class="icon">
+                      <img src="/dist/img/icons/cart.svg" alt="cart-icon"">
+                  </div>
+                  <p> <span id="product-count">{{ getCartCounted() }}</span> {{__('base.items')}}</p>
+              </a>
           </div>
       </div>
   </div>

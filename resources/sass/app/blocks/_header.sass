@@ -9,7 +9,6 @@
     flex-wrap: nowrap
     align-items: center
     justify-content: center
-    padding: .7rem 0
     flex: 1 1 100%
   li
     .icon
@@ -19,11 +18,16 @@
     &:hover
       color: $color-hightlight
   &__top
+    padding: .7rem 0
     a,
     span
       font-size: .875em
   &__bot
     background: url('/dist/img/bg.png') $color-hightlight repeat
+    .wrapper
+      position: relative
+      z-index: 49
+      padding: .7rem 0
     a,
     span
       color: #fff
@@ -42,3 +46,39 @@
       border-right: 1px solid #fff
     a
       font: normal 400 .97em/1.3 $title-font
+
+
+.cart-box
+  position: absolute
+  top: 100%
+  right: 0
+  padding: .7rem 3.75rem
+  border-bottom-left-radius: 1.875rem
+  border-bottom-right-radius: 1.875rem
+  display: flex
+  background: url('/dist/img/bg.png') $color-hightlight repeat
+  z-index: 55
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25)
+  &::before,
+  &::after
+    content: ""
+    position: absolute
+    bottom: -3px
+    height: 100%
+    width: 50px
+    background: url("/dist/img/cloud-two.svg") no-repeat center center
+    background-size: contain
+    transform: rotate(183deg)
+  &::after
+    right: 0
+    transform: scale(-1,1) rotate(183deg)
+  &::before
+    left: 0
+  .icon
+    margin-right: 1rem
+    flex: 0 0 2.188rem
+  p
+    display: flex
+    align-items: center
+    span
+      margin-right: .625rem

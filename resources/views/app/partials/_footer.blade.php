@@ -48,3 +48,10 @@
         </div>
     </div>
 </footer>
+
+<!-- Modals -->
+<div class="cart-success">
+    <div class="content">
+        {{ __('cart.cart.success') }}
+    </div>
+</div>

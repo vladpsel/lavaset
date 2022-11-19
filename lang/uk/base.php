@@ -27,4 +27,7 @@ return [
 
     'get_recommended' => 'Спробуйте ше',
 
+    'prev.item' => 'Попередній',
+    'next.item' => 'Наступний',
+
 ];

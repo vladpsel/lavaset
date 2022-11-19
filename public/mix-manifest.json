@@ -91,5 +91,6 @@
     "/dist/fonts/ubuntu-v20-latin_cyrillic-ext_cyrillic-regular.ttf": "/dist/fonts/ubuntu-v20-latin_cyrillic-ext_cyrillic-regular.ttf",
     "/dist/fonts/ubuntu-v20-latin_cyrillic-ext_cyrillic-regular.woff": "/dist/fonts/ubuntu-v20-latin_cyrillic-ext_cyrillic-regular.woff",
     "/dist/fonts/ubuntu-v20-latin_cyrillic-ext_cyrillic-regular.woff2": "/dist/fonts/ubuntu-v20-latin_cyrillic-ext_cyrillic-regular.woff2",
-    "/dist/css/font.css": "/dist/css/font.css"
+    "/dist/css/font.css": "/dist/css/font.css",
+    "/dist/img/cloud-two.svg": "/dist/img/cloud-two.svg"
 }

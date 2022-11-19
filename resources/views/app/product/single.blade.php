@@ -49,7 +49,7 @@
                             @if(!empty($previous))
                             <li>
                                 <a href="{{ route('public.product', ['locale' => app()->getLocale(), 'id' => $previous->alias]) }}" class="card flex">
-                                    <p class="full np">Попередній:</p>
+                                    <p class="full np">{{ __('base.prev.item') }}:</p>
                                     <p class="subtitle">{{$previous->title}}</p>
                                 </a>
                             </li>
@@ -58,7 +58,7 @@
                             @if(!empty($next))
                                     <li>
                                         <a href="{{ route('public.product', ['locale' => app()->getLocale(), 'id' => $next->alias]) }}" class="card flex">
-                                            <p class="full np">Наступний:</p>
+                                            <p class="full np">{{ __('base.next.item') }}:</p>
                                             <p class="subtitle">{{$next->title}}</p>
                                         </a>
                                     </li>
@@ -72,9 +72,9 @@
         <section>
             <div class="wrapper">
                 <div class="full mb-1">
-                    <h2 class="title">{{ __('base.get_recommended') }}</h2>
+                    <h2 class="title full">{{ __('base.get_recommended') }}</h2>
                 </div>
-                <ul class="products-list list-four-items list flex mx-w">
+                <ul class="products-list full list-four-items list flex mx-w">
                     @if(!empty($recommended) && count($recommended) >= 1)
                         @foreach($recommended as $single)
                             @php
