@@ -1,6 +1,19 @@
 .breadcrumbs
+  justify-content: flex-start
+  align-items: center
   > li
-    padding: 0 1rem
+    padding: 0
     position: relative
-    a
+    &::after
+      content: '/'
+      padding: 0 1rem
+    &:last-of-type
+      &::after
+        content: none
+      a,
+      span
+        pointer-events: none
+        opacity: .8
+    a,
+    span
       font: normal 1.1em/1.3 $title-font

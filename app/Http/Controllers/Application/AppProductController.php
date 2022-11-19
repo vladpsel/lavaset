@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Application;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Models\Component;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
@@ -26,13 +27,21 @@ class AppProductController extends Controller
             abort(404);
         }
 
+        $category = Category::where([
+            ['locale', '=', app()->getLocale()],
+            ['group', '=', $product->category_id],
+        ])->first();
 
         return view('app.product.single', [
             'product' => $product,
-            'category' => Category::where([
+            'previous' => $product->getPrev(),
+            'next' => $product->getNext(),
+            'category' => $category,
+            'components' => Component::where([
                 ['locale', '=', app()->getLocale()],
-                ['group', '=', $product->category_id],
-            ])->first(),
+                ['isVisible', '=', 1]
+            ])->orderBy('title', 'asc')->get(),
+            'recommended' =>  Product::getRandomProductsByCategory($category->group, 4),
         ]);
     }
 }

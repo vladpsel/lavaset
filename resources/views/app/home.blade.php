@@ -76,7 +76,7 @@
         <section>
           <div class="wrapper">
             <div class="full mb-1">
-              <div class="two-of-three mx-w np">
+              <div class="two-of-three mx-w">
                   <h2 class="title mb-1">Настав час скуштувати найсмачніші суші!</h2>
                   <p>
                       Ми зібрали найпопулярніші позиції для того, щоб надати змогу якнайшвидке скуштувати ці шедеври.
@@ -100,7 +100,7 @@
                         <h3 class="title item">{{ $category->title }}</h3>
                         <a href="{{ getLink(app()->getLocale() . '/category/' . $category->alias) }}" class="item btn">Дивитись всю категорію</a>
                     </div>
-                    <ul class="products-list list-four-items list flex mx-w">
+                    <ul class="products-list list-four-items list flex full mx-w">
                         @foreach($products as $product)
                             @php
                                 $product['components'] = json_decode($product['components']);

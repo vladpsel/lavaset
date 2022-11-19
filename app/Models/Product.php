@@ -30,6 +30,21 @@ class Product extends Model
         'category_id' => null,
     ];
 
+    private function getCommonFields(): array
+    {
+        return [
+            'alias' => $this->alias,
+            'picture' => $this->picture,
+            'category_id' => $this->category_id,
+            'price' => $this->price,
+            'weight' => $this->weight,
+            'parameter' => $this->parameter,
+            'components' => $this->components,
+            'sort_order' => $this->sort_order,
+            'is_visible' => $this->is_visible,
+        ];
+    }
+
     public function getWeightIndicators()
     {
         return [
@@ -78,22 +93,7 @@ class Product extends Model
         return $pages;
     }
 
-    private function getCommonFields(): array
-    {
-        return [
-            'alias' => $this->alias,
-            'picture' => $this->picture,
-            'category_id' => $this->category_id,
-            'price' => $this->price,
-            'weight' => $this->weight,
-            'parameter' => $this->parameter,
-            'components' => $this->components,
-            'sort_order' => $this->sort_order,
-            'is_visible' => $this->is_visible,
-        ];
-    }
-
-    public static function getRandomProductsByCategory($categoryId): ?array
+    public static function getRandomProductsByCategory($categoryId, $length = 8): ?array
     {
         $scope = self::where([
             ['locale', app()->getLocale()],
@@ -106,7 +106,7 @@ class Product extends Model
 
         shuffle($scope);
 
-        return array_splice($scope, 0, 8);
+        return array_splice($scope, 0, $length);
     }
 
     public static function getWeightIndicator($index)
@@ -119,6 +119,46 @@ class Product extends Model
             case '4': return __('base.indicator.four');
             case '5': return __('base.indicator.five');
         }
+    }
+
+    public function getPrev()
+    {
+        $id = $this->group;
+        $prev = null;
+
+        for ($i = --$id; $i !== 0; $i--) {
+            $prev = self::where([
+                ['locale', '=', app()->getLocale()],
+                ['group', '=', $i],
+            ])->first();
+
+            if (!empty($prev)) {
+                return $prev;
+            }
+        }
+        return $prev;
+    }
+
+    public function getNext()
+    {
+        $id = $this->group;
+        $total = self::where([
+            ['locale', '=', app()->getLocale()],
+        ])->count();
+
+        $next = null;
+
+        for ($i = $id; $i <= $total; $i++) {
+        $next = self::where([
+                ['locale', '=', app()->getLocale()],
+                ['group', '=', ++$i],
+            ])->first();
+
+            if (!empty($next)) {
+                return $next;
+            }
+        }
+        return $next;
     }
 
 }

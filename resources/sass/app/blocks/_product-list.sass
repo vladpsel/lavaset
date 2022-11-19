@@ -1,5 +1,5 @@
-.products-list
-  padding: 0 1rem
+// .products-list
+//   padding: 0 1rem
 
 .products-list,
 .product-item
@@ -35,6 +35,19 @@
   .btn
     align-self: flex-end
 
+.product-item
+  display: flex
+  align-items: flex-start
+  justify-content: flex-start
+  flex-wrap: wrap
+  padding-bottom: 2rem
+  .card
+    display: flex
+    width: auto
+    flex: 0 0 50%
+    height: auto
+    margin-bottom: 1.3rem
+
 .price
   font-weight: 700
   color: #595959
@@ -54,3 +67,9 @@
         content: ","
     &:first-of-type
       text-transform: capitalize
+
+.product
+  .img-wrp
+    border-radius: 1.875rem
+    overflow: hidden
+    margin-bottom: 1rem

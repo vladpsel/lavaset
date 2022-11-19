@@ -27,4 +27,6 @@ return [
     'buy.btn' => 'Add to cart',
     'empty' => 'Empty',
 
+    'get_recommended' => 'Find more',
+
 ];
