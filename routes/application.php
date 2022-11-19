@@ -11,6 +11,7 @@ $routes = function () {
     Route::get('category/{id}', [AppCategoryController::class, 'index'])->where('id', '([a-z0-9\-]+)?');
     Route::get('product/{id}', [AppProductController::class, 'index'])->where('id', '([a-z0-9\-]+)?')->name('public.product');
     Route::match(['get', 'post'], 'cart', [AppCartController::class, 'checkout'])->name('public.cart');
+    Route::match(['get', 'post'], 'cart/success', [AppCartController::class, 'success'])->name('public.cart.success');
 };
 
 //API

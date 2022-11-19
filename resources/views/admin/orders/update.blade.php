@@ -20,7 +20,7 @@
                 @foreach($items as $item)
                     <li>
                         <p class="mb-1">
-                            <a href="#">{{ $item->id . '. ' . $item->name }}</a>
+                            <a href="{{route('admin.orders.single', $item->id)}}">{{ $item->id . '. ' . $item->name }}</a>
                         </p>
                         <p>
                             <a href="#">{{ $item->phone }}</a>

@@ -7,7 +7,9 @@ use App\Http\Controllers\Controller;
 use App\Models\Order;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
+use Symfony\Component\Console\Input\Input;
 
 class AppCartController extends Controller
 {
@@ -29,27 +31,33 @@ class AppCartController extends Controller
 
         $products = Product::whereIn('group', array_keys($productsInCart))->where('locale', app()->getLocale())->get();
 
-        if ($this->request->isMethod('post') && $this->request->has('submit')) {
-            $validator = Validator::make(
-                $this->request->all(),
-                $cart::getValidationRules(),
-                $cart::getValidationErrorMessages(),
-            );
+        if ($this->request->isMethod('post')) {
+            if ($this->request->has('submit')) {
+                $validator = Validator::make(
+                    $this->request->all(),
+                    $cart::getValidationRules(),
+                    $cart::getValidationErrorMessages(),
+                );
 
-            if ($validator->fails()) {
-                return redirect()->back()->withErrors($validator)->withInput();
+                if ($validator->fails()) {
+                    return redirect()->back()->withErrors($validator)->withInput();
+                }
+
+                $data = $this->data;
+                $data['products'] = json_encode(Product::addProductQuantity($products->toArray(), $productsInCart));
+                $data['details'] = json_encode($data['details']);
+                $data['total'] = $cart->getTotal();
+                $data['status'] = 'new';
+
+                Order::create($data);
+                session()->forget('products');
+
+                return redirect()->route('public.cart.success', app()->getLocale())->with('message', 'done');
             }
-
-            $data = $this->data;
-            $data['products'] = json_encode(Product::addProductQuantity($products->toArray(), $productsInCart));
-            $data['details'] = json_encode($data['details']);
-            $data['total'] = $cart->getTotal();
-            $data['status'] = 'new';
-
-            Order::create($data);
-            session()->forget('products');
-
-            return redirect('/');
+            if ($this->request->has('remove')) {
+                $this->remove($this->request->input('remove'));
+                return back()->withInput();
+            }
         }
 
         return view('app.checkout', [
@@ -59,9 +67,16 @@ class AppCartController extends Controller
         ]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+    public function success()
+    {
+        $status = Session::has('message');
+        if (!$status) {
+            return abort(404);
+        }
+
+        return view('app.success');
+    }
+
     public function add(Request $request)
     {
 
@@ -113,7 +128,7 @@ class AppCartController extends Controller
         ]);
     }
 
-    public function remove($id)
+    private function remove($id)
     {
         $products = session()->get('products');
 
@@ -123,7 +138,6 @@ class AppCartController extends Controller
 
         unset($products[$id]);
         session()->put('products', $products);
-        return back();
     }
 
 

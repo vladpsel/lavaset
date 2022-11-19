@@ -8,6 +8,7 @@
     "/dist/img/bg.svg": "/dist/img/bg.svg",
     "/dist/img/bg2.png": "/dist/img/bg2.png",
     "/dist/img/card.svg": "/dist/img/card.svg",
+    "/dist/img/cloud-two.svg": "/dist/img/cloud-two.svg",
     "/dist/img/cloud.svg": "/dist/img/cloud.svg",
     "/dist/img/clouds-asian-ornament-waves-asian-ornament-japanese-and-chinese-gold-patterns-of-clouds-and-waves_480270-29 (1) 2.png": "/dist/img/clouds-asian-ornament-waves-asian-ornament-japanese-and-chinese-gold-patterns-of-clouds-and-waves_480270-29 (1) 2.png",
     "/dist/img/favicon.png": "/dist/img/favicon.png",
@@ -91,6 +92,5 @@
     "/dist/fonts/ubuntu-v20-latin_cyrillic-ext_cyrillic-regular.ttf": "/dist/fonts/ubuntu-v20-latin_cyrillic-ext_cyrillic-regular.ttf",
     "/dist/fonts/ubuntu-v20-latin_cyrillic-ext_cyrillic-regular.woff": "/dist/fonts/ubuntu-v20-latin_cyrillic-ext_cyrillic-regular.woff",
     "/dist/fonts/ubuntu-v20-latin_cyrillic-ext_cyrillic-regular.woff2": "/dist/fonts/ubuntu-v20-latin_cyrillic-ext_cyrillic-regular.woff2",
-    "/dist/css/font.css": "/dist/css/font.css",
-    "/dist/img/cloud-two.svg": "/dist/img/cloud-two.svg"
+    "/dist/css/font.css": "/dist/css/font.css"
 }

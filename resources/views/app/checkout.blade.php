@@ -16,7 +16,7 @@
                             <fieldset class="full">
                                 <label>
                                     <span class="label">{{ __('cart.checkout.name') }}</span>
-                                    <input type="text" name="name" value="{{ request()->input('name', old('name'))}}" autocomplete="username" required>
+                                    <input type="text" name="name" value="{{ request()->input('name', old('name'))}}" autocomplete="username">
                                 </label>
                                 @error('name')
                                 <p class="form-error"> {{ $message }} </p>
@@ -26,7 +26,7 @@
                             <fieldset class="full">
                                 <label>
                                     <span class="label">{{ __('cart.checkout.phone') }}</span>
-                                    <input type="tel" name="phone" value="{{ request()->input('phone', old('phone')) }}" placeholder="+380" autocomplete="tel" class="phone-input" required>
+                                    <input type="tel" name="phone" value="{{ request()->input('phone', old('phone')) }}" placeholder="" autocomplete="tel" class="phone-input">
                                 </label>
                                 @error('phone')
                                 <p class="form-error"> {{ $message }} </p>
@@ -118,9 +118,9 @@
                                     <div class="two-of-three">
                                         <div class="flex np f-between mb-1">
                                             <h2 class="text item">{{ $product->title }}</h2>
-                                            <a href="#" class="icon">
+                                            <button type="submit" name="remove" value="{{ $product->group }}" class="icon">
                                                 <img src="/dist/img/icons/close.svg" alt="remove icon">
-                                            </a>
+                                            </button>
                                         </div>
                                         <div class="flex v-center f-between m-no-wrp">
                                             <div class="count-input item">
