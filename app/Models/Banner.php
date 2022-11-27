@@ -28,4 +28,29 @@ class Banner extends Model
         ''
     ];
 
+    private function getCommonFields()
+    {
+        return [
+            'link' => $this->link,
+            'sort_order' => $this->sort_order,
+            'is_visible' => $this->is_visible,
+            'left' => $this->left,
+            'right' => $this->right,
+        ];
+    }
+
+    public function updateCommonFields()
+    {
+        $pages = self::where([
+            ['group', '=', $this->group],
+            ['id', '!=', $this->id],
+        ])->get();
+
+        foreach ($pages as $single) {
+            $single->update($this->getCommonFields());
+        }
+
+        return $pages;
+    }
+
 }

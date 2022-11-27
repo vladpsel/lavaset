@@ -95,6 +95,16 @@ class AdminModulesController extends Controller
 
             }
 
+            if($this->request->has('submit')) {
+                $data = $this->data;
+
+                $data['left'] = $this->file->updateFile($banner->left, 'left', 'upload/banners');
+                $data['right'] = $this->file->updateFile($banner->right, 'right', 'upload/banners');
+                $banner->update($data);
+                $banner->updateCommonFields($banner);
+                return back()->with('message', 'Товар успішно оновлено');
+            }
+
 
         }
 
