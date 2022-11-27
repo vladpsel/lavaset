@@ -1,4 +1,3 @@
-import CyrillicToTranslit from "cyrillic-to-translit-js";
 import IMask from 'imask';
 
 
@@ -21,6 +20,72 @@ function aliasInput() {
     Array.prototype.forEach.call(elements, function(item){
         IMask(item, maskOptions);
         console.log(item);
+    });
+
+}
+
+function dropdownselect() {
+    let elements = document.querySelectorAll('.dropdown-select');
+
+    if (!elements) {
+        return;
+    }
+
+    let setValue = (input, list) => {
+        Array.prototype.forEach.call(list, function(listItem){
+            listItem.addEventListener('click', function(){
+                let url = listItem.getAttribute('data-link');
+                input.value = url;
+            });
+        })
+    }
+
+    let findValue = (value, items) => {
+
+        if (value === null || value.length == 0) {
+            Array.prototype.forEach.call(items, function(single){
+                single.classList.remove('hidden');
+            })
+            return;
+        }
+
+        let pattern = new RegExp(value, "i");
+
+        Array.prototype.forEach.call(items, function(single){
+            let dataVal = single.getAttribute('data-text');
+            if (pattern.test(dataVal)) {
+                single.classList.remove('hidden');
+            } else {
+                single.classList.add('hidden');
+            }
+        })
+
+    }
+
+    Array.prototype.forEach.call(elements, function(item){
+        let input = item.querySelector('input');
+        let dropdown = item.querySelector('.dropdown-select__list');
+        let dropdownItems = dropdown.querySelectorAll('li');
+
+        setValue(input, dropdownItems);
+
+        input.addEventListener('focus', function() {
+            dropdown.classList.add('open');
+        });
+
+        input.addEventListener('focusout', function() {
+            setTimeout(function() {
+                dropdown.classList.remove('open');
+            }, 150);
+            findValue(null, dropdownItems);
+        });
+
+        input.addEventListener('input', function () {
+            let val = input.value;
+            findValue(val, dropdownItems);
+        });
+
+
     });
 
 }
@@ -82,4 +147,5 @@ docReady(function () {
     aliasInput();
     productOrder();
     handleProductCondition();
+    dropdownselect();
 })

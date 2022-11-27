@@ -18,19 +18,13 @@
               <ul class="aside-bar__list">
                   @foreach($items as $item)
                       <li>
-                          <p class="mb-1">{{ $item[0]->title  }}</p>
-                          <ul class="list">
-                              @foreach($item as $singleItem)
-                                  <li>
-                                      <a href="{{ route('admin.products.single', $singleItem->id) }}" class="lang-item">{{ $singleItem->locale }}</a>
-                                  </li>
-                              @endforeach
-                          </ul>
+                          <p class="mb-1">
+                              <a href="{{ route($item['url']) }}">{{ $item['title'] }}</a>
+                          </p>
                       </li>
                   @endforeach
               </ul>
           @endif
-
       </div>
   </aside>
   <div class="dashboard-panel">

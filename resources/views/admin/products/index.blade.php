@@ -30,7 +30,6 @@
                 @endforeach
             </ul>
         @endif
-
     </div>
   </aside>
   <div class="dashboard-panel">

@@ -94,5 +94,12 @@ Route::prefix('counterparties')->group(function () {
 
 Route::prefix('modules')->group(function(){
     Route::get('/', [AdminModulesController::class, 'index'])->name('admin.modules');
+    Route::match(['get', 'post'], '/banners', [AdminModulesController::class, 'banners'])->name('admin.modules.banners');
+    Route::match(['get', 'post'], '/banners/{id}/update', [AdminModulesController::class, 'bannersUpdate'])
+        ->where('id', '[0-9]+')
+        ->name('admin.modules.banners.update');
+    Route::match(['get', 'post'], '/banners/{id}/delete', [AdminModulesController::class, 'bannersDelete'])
+        ->where('id', '[0-9]+')
+        ->name('admin.modules.banners.delete');
 });
 
