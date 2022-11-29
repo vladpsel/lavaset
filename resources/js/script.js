@@ -53,6 +53,7 @@ function dropdownselect() {
 
         Array.prototype.forEach.call(items, function(single){
             let dataVal = single.getAttribute('data-text');
+
             if (pattern.test(dataVal)) {
                 single.classList.remove('hidden');
             } else {
@@ -67,24 +68,23 @@ function dropdownselect() {
         let dropdown = item.querySelector('.dropdown-select__list');
         let dropdownItems = dropdown.querySelectorAll('li');
 
-        setValue(input, dropdownItems);
-
         input.addEventListener('focus', function() {
             dropdown.classList.add('open');
+            setValue(input, dropdownItems);
         });
+
 
         input.addEventListener('focusout', function() {
             setTimeout(function() {
                 dropdown.classList.remove('open');
+                findValue(null, dropdownItems);
             }, 150);
-            findValue(null, dropdownItems);
         });
 
         input.addEventListener('input', function () {
             let val = input.value;
             findValue(val, dropdownItems);
         });
-
 
     });
 

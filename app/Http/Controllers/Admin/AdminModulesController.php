@@ -92,6 +92,8 @@ class AdminModulesController extends Controller
         if ($this->request->isMethod('post')) {
 
             if ($this->request->has('remove_pic')) {
+                $key = $this->request->input('remove_pic');
+                $data[$key] = $this->file->removeFile($banner->$key, '/upload/banners');
 
             }
 
@@ -100,11 +102,12 @@ class AdminModulesController extends Controller
 
                 $data['left'] = $this->file->updateFile($banner->left, 'left', 'upload/banners');
                 $data['right'] = $this->file->updateFile($banner->right, 'right', 'upload/banners');
-                $banner->update($data);
-                $banner->updateCommonFields($banner);
-                return back()->with('message', 'Товар успішно оновлено');
+
             }
 
+            $banner->update($data);
+            $banner->updateCommonFields($banner);
+            return back()->with('message', 'Товар успішно оновлено');
 
         }
 
