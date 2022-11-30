@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\AdminCategoryController;
 use App\Http\Controllers\Admin\AdminComponentsController;
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\AdminModulesController;
 use App\Http\Controllers\Admin\AdminOrderController;
 use App\Http\Controllers\Admin\AdminPageController;
 use App\Http\Controllers\Admin\AdminProductController;
@@ -89,5 +90,16 @@ Route::prefix('counterparties')->group(function () {
     Route::match(['get', 'post'], '/{id}/delete', [AdminUserController::class, 'delete'])
         ->where('id', '[0-9]+')
         ->name('admin.users.single.delete');
+});
+
+Route::prefix('modules')->group(function(){
+    Route::get('/', [AdminModulesController::class, 'index'])->name('admin.modules');
+    Route::match(['get', 'post'], '/banners', [AdminModulesController::class, 'banners'])->name('admin.modules.banners');
+    Route::match(['get', 'post'], '/banners/{id}/update', [AdminModulesController::class, 'bannersUpdate'])
+        ->where('id', '[0-9]+')
+        ->name('admin.modules.banners.update');
+    Route::match(['get', 'post'], '/banners/{id}/delete', [AdminModulesController::class, 'bannersDelete'])
+        ->where('id', '[0-9]+')
+        ->name('admin.modules.banners.delete');
 });
 
