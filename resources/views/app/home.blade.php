@@ -1,5 +1,7 @@
 @extends('layout')
 
+@section('title', getTitle())
+
 @section('content')
   @include('app.partials._header')
     <main>
@@ -44,60 +46,11 @@
                         </div>
                     @endforeach
 
-                    <!-- <div class="swiper-slide">
-                      <div class="content flex f-center">
-
-                          <div class="img-left one-of-three mx-w img-wrp">
-                              <img src="/dist/img/left.png" alt="">
-                          </div>
-
-                          <div class="wrapper f-center">
-                              <div class="two-of-four mx-w text-center">
-                                  <h2 class="title-main mb">Ну дуууууууже смачно</h2>
-                                  <p>
-                                      Найсмачніші суші для тебе і твоїх друзів! Спробуй і ти повертатимешся знов і знов!
-                                  </p>
-                                  <a href="#" class="btn btn-main primary">Детальніше</a>
-                              </div>
-                          </div>
-
-                          <div class="img-right one-of-three mx-w img-wrp">
-                              <img src="/dist/img/right.png" alt="">
-                          </div>
-                      </div>
-                    </div> -->
-
-                    <!-- <div class="swiper-slide">
-                        <div class="content flex f-center">
-
-                            <div class="img-left one-of-three mx-w img-wrp">
-                                <img src="/dist/img/left2.png" alt="">
-                            </div>
-
-                            <div class="wrapper f-center">
-                                <div class="two-of-four mx-w text-center">
-                                    <h2 class="title-main mb">Нові сети</h2>
-                                    <p>
-                                        Ми створили нові неповторні сети! Скуштуй страви які не залишать тебе байдужим
-                                    </p>
-                                    <a href="#" class="btn btn-main primary">Спробувати</a>
-                                </div>
-                            </div>
-
-                            <div class="img-right one-of-three mx-w img-wrp">
-                                <img src="/dist/img/right2.png" alt="">
-                            </div>
-
-
-                        </div>
-                    </div> -->
-
                 </div>
 
                 <div class="swiper-pagination"></div>
 
                 <div class="swiper-button-next"></div>
-
 
                 <div class="swiper-scrollbar"></div>
             </div>

@@ -15,6 +15,29 @@ function getLogo(): string
     return '<img src="/dist/img/lavaset.svg" alt="' . $config['sitename'] .'">';
 }
 
+function getIcon(): ?string
+{
+    $configFilepath = config_path() . '/theme.php';
+    $config = include($configFilepath);
+
+    if (!empty($config['favicon']) && $config['favicon'] !== '') {
+        return $config['favicon'];
+    }
+
+    return null;
+}
+
+function getTitle()
+{
+    $configFilepath = config_path() . '/theme.php';
+    $config = include($configFilepath);
+
+    if (!empty($config['sitename']) && $config['sitename'] !== '') {
+        return $config['sitename'];
+    }
+    return null;
+}
+
 function getPages()
 {
     return \App\Models\Page::where('locale', app()->getLocale())->get();
@@ -42,10 +65,15 @@ function getLangList()
     return config('app.available_locales');
 }
 
-function normalizeLangLink($link)
-{
-    return trim($link, '/');
-}
+//function normalizeLangLink($lang, $link)
+//{
+//    return '/' . $lang . '/' . $link;
+//
+////    if ($lang === config('app.fallback_locale')) {
+////        $link = trim($link, '/');
+////    }
+////    return trim($link, '/');
+//}
 
 function getCategories()
 {

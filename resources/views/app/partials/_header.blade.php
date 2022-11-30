@@ -49,7 +49,7 @@
                   <ul class="lang-list list">
                       @foreach(getLangList() as $locale)
                           <li>
-                              <a href="/{{ normalizeLangLink($locale . '/' . \Illuminate\Support\Facades\Request::path()) }}">{{ ucfirst($locale) }}</a>
+                              <a href="/{{ $locale }}">{{ ucfirst($locale) }}</a>
                           </li>
                       @endforeach
                   </ul>
