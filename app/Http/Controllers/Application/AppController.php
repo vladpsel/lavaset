@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Application;
 
 use App\Http\Controllers\Controller;
+use App\Models\Banner;
 use App\Models\Category;
 use App\Models\Component;
 use App\Models\Product;
@@ -17,6 +18,10 @@ class AppController extends Controller
     {
 
         return view('app.home', [
+            'banners' => Banner::where([
+                ['locale', '=', app()->getLocale()],
+                ['is_visible', '=', 1]
+            ])->orderBy('sort_order', 'desc')->get(),
             'categories' => getCategories(),
             'components' => Component::where([
                 ['locale', '=', app()->getLocale()],

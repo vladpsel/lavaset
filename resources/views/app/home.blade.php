@@ -12,7 +12,39 @@
 
                 <div class="swiper-wrapper">
 
-                    <div class="swiper-slide">
+                    @foreach($banners as $banner)
+                        <div class="swiper-slide">
+                            <div class="content flex f-center">
+
+                                @if($banner->left !== '' && !empty($banner->left))
+                                    <div class="img-left one-of-three mx-w img-wrp">
+                                        <img src="/upload/banners/{{ $banner->left }}" alt="">
+                                    </div>
+                                @endif
+
+                                <div class="wrapper f-center">
+                                    <div class="two-of-four mx-w text-center">
+                                        @if($banner->title !== '' && !empty($banner->title))
+                                            <h2 class="title-main mb">{{ $banner->title }}</h2>
+                                        @endif
+                                        @if($banner->text !== '' && !empty($banner->text))
+                                          <p>{{ $banner->text }}</p>
+                                        @endif
+                                        @if($banner->btn_title !== '' && !empty($banner->btn_title))
+                                                <a href="{{ $banner->getBannerLink($banner->link) }}" class="btn btn-main primary">{{ $banner->btn_title }}</a>
+                                        @endif
+                                    </div>
+                                </div>
+                                @if($banner->right !== '' && !empty($banner->right))
+                                    <div class="img-right one-of-three mx-w img-wrp">
+                                        <img src="/upload/banners/{{ $banner->right }}" alt="">
+                                    </div>
+                                @endif
+                            </div>
+                        </div>
+                    @endforeach
+
+                    <!-- <div class="swiper-slide">
                       <div class="content flex f-center">
 
                           <div class="img-left one-of-three mx-w img-wrp">
@@ -32,12 +64,10 @@
                           <div class="img-right one-of-three mx-w img-wrp">
                               <img src="/dist/img/right.png" alt="">
                           </div>
-
-
                       </div>
-                    </div>
+                    </div> -->
 
-                    <div class="swiper-slide">
+                    <!-- <div class="swiper-slide">
                         <div class="content flex f-center">
 
                             <div class="img-left one-of-three mx-w img-wrp">
@@ -60,7 +90,7 @@
 
 
                         </div>
-                    </div>
+                    </div> -->
 
                 </div>
 

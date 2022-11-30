@@ -53,4 +53,17 @@ class Banner extends Model
         return $pages;
     }
 
+    public function getBannerLink(?string $link)
+    {
+
+        if (preg_match('/^(http)s?/i', $link)) {
+            return $link;
+        };
+
+        $link = trim($link, '/');
+
+        return getLink(app()->getLocale() . '/' . $link);
+
+    }
+
 }
