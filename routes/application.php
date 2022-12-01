@@ -15,6 +15,8 @@ $routes = function () {
     Route::match(['get', 'post'], 'cart/success', [AppCartController::class, 'success'])->name('public.cart.success');
     //
     Route::get('delivery', [AppPageController::class, 'delivery']);
+    Route::get('sales', [AppPageController::class, 'sales']);
+    Route::get('for-clients', [AppPageController::class, 'oferta']);
 };
 
 //API

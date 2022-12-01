@@ -23,4 +23,30 @@ class AppPageController extends Controller
          ])->orderBy('sort_order', 'asc')->get(),
      ]);
     }
+
+    public function sales()
+    {
+        return view('app.delivery',[
+            'title' => CustomField::where([
+                ['locale', '=', app()->getLocale()],
+                ['is_visible', '=', 1],
+                ['related_group', '=', 'sales']
+            ])->first(),
+            'items' => [],
+        ]);
+    }
+
+    public function oferta()
+    {
+        $content = CustomField::where([
+            ['locale', '=', app()->getLocale()],
+            ['is_visible', '=', 1],
+            ['related_group', '=', 'oferta']
+        ])->get()->toArray();
+
+        return view('app.text',[
+            'title' => array_shift($content),
+            'content' => $content,
+        ]);
+    }
 }
