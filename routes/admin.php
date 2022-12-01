@@ -108,6 +108,10 @@ Route::prefix('modules')->group(function(){
     Route::match(['get', 'post'], '/custom-fields/{id}/update', [AdminCustomFieldsController::class, 'update'])
         ->where('id', '[0-9]+')
         ->name('admin.modules.fields.update');
+    Route::match(['get', 'post'], '/custom-fields/{id}/delete', [AdminCustomFieldsController::class, 'delete'])
+        ->where('id', '[0-9]+')
+        ->name('admin.modules.fields.delete');
+
 
 });
 

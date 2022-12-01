@@ -32,4 +32,6 @@ return [
     'prev.item' => 'Previous',
     'next.item' => 'Next',
 
+    'category_more' => 'Look for category'
+
 ];

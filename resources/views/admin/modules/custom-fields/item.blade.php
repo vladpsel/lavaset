@@ -38,6 +38,7 @@
                 <div class="flex f-between v-center">
                     <h1 class="title-main item mb-1">Оновити поле</h1>
                     <div class="btn-group item mb-1">
+                        <a href="{{ route('admin.modules.fields.delete', $custom->group) }}" class="btn btn-main alert">Видалити</a>
                         <button type="submit" name="submit" class="btn btn-main primary">Оновити</button>
                     </div>
                 </div>
@@ -124,9 +125,11 @@
                             </fieldset>
                             <ul class="dropdown-select__list">
                                 @foreach($groups as $related)
-                                    <li data-text="{{$related->related_group}}" data-link="{{ $related->related_group }}">
-                                        {{ $related->related_group }}
-                                    </li>
+                                    @if(strlen($related->related_group) > 1)
+                                        <li data-text="{{$related->related_group}}" data-link="{{ $related->related_group }}">
+                                            {{ $related->related_group }}
+                                        </li>
+                                    @endif
                                 @endforeach
                             </ul>
                         </div>

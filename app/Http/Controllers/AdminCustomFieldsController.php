@@ -99,4 +99,29 @@ class AdminCustomFieldsController extends Controller
             'groups' => CustomField::where('locale', $this->locale)->get(),
         ]);
     }
+
+
+    public function delete(int $id)
+    {
+        $requested = CustomField::where('group', $id)->get();
+
+        if (count($requested) < 1) {
+            return back();
+        }
+
+        if ($this->request->isMethod('post') && $this->request->has('submit')) {
+
+            $this->file->removeFile($requested[0]->picture, 'upload/custom-fields');
+
+            foreach ($requested as $item) {
+                $item->delete();
+            }
+            return redirect()->route('admin.modules.fields')->with('message', 'Банер було видалено');
+        }
+
+        return view('admin.modules.custom-fields.delete', [
+            'requested' => $requested,
+            'items' => $requested[0]->getLocaleGroupedItems(),
+        ]);
+    }
 }
