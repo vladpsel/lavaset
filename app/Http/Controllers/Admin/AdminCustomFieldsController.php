@@ -1,12 +1,15 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Helpers\FileHelper;
+use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\CustomField;
 use App\Models\Page;
 use App\Models\Product;
+use Illuminate\Config\Repository;
+use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Http\Request;
 
 class AdminCustomFieldsController extends Controller
@@ -16,11 +19,11 @@ class AdminCustomFieldsController extends Controller
     private array $data;
     private FileHelper $file;
     /**
-     * @var \Illuminate\Config\Repository|\Illuminate\Contracts\Foundation\Application|mixed
+     * @var Repository|Application|mixed
      */
     private mixed $locale;
     /**
-     * @var \Illuminate\Config\Repository|\Illuminate\Contracts\Foundation\Application|mixed
+     * @var Repository|Application|mixed
      */
     private mixed $locales;
 

@@ -3,13 +3,13 @@
 use App\Http\Controllers\Admin\AdminCategoryController;
 use App\Http\Controllers\Admin\AdminComponentsController;
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\AdminCustomFieldsController;
 use App\Http\Controllers\Admin\AdminModulesController;
 use App\Http\Controllers\Admin\AdminOrderController;
 use App\Http\Controllers\Admin\AdminPageController;
 use App\Http\Controllers\Admin\AdminProductController;
 use App\Http\Controllers\Admin\AdminSecurityController;
 use App\Http\Controllers\Admin\AdminUserController;
-use App\Http\Controllers\AdminCustomFieldsController;
 use Illuminate\Support\Facades\Route;
 
 /*
