@@ -56,20 +56,20 @@
             </div>
         </section>
 
+        @if(!empty($text))
         <section>
           <div class="wrapper">
             <div class="full mb-1">
               <div class="two-of-three mx-w">
-                  <h2 class="title mb-1">Настав час скуштувати найсмачніші суші!</h2>
+                  <h2 class="title mb-1">{{ $text->title }}</h2>
                   <p>
-                      Ми зібрали найпопулярніші позиції для того, щоб надати змогу якнайшвидке скуштувати ці шедеври.
-                      Не знайшли щось для себе у запропонованих стравах, перейдіть у повний каталог категорії та стовідсотково знайдіть
-                      для себе страву!
+                      {{ $text->text }}
                   </p>
               </div>
             </div>
           </div>
         </section>
+        @endif
 
         @foreach($categories as $category)
             @php
@@ -81,7 +81,7 @@
                 <div class="wrapper">
                     <div class="flex full v-center f-between mb-1">
                         <h3 class="title item">{{ $category->title }}</h3>
-                        <a href="{{ getLink(app()->getLocale() . '/category/' . $category->alias) }}" class="item btn">Дивитись всю категорію</a>
+                        <a href="{{ getLink(app()->getLocale() . '/category/' . $category->alias) }}" class="item btn">{{ __('base.category_more') }}</a>
                     </div>
                     <ul class="products-list list-four-items list flex full mx-w">
                         @foreach($products as $product)

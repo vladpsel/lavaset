@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\AdminPageController;
 use App\Http\Controllers\Admin\AdminProductController;
 use App\Http\Controllers\Admin\AdminSecurityController;
 use App\Http\Controllers\Admin\AdminUserController;
+use App\Http\Controllers\AdminCustomFieldsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -93,6 +94,7 @@ Route::prefix('counterparties')->group(function () {
 });
 
 Route::prefix('modules')->group(function(){
+    // banners
     Route::get('/', [AdminModulesController::class, 'index'])->name('admin.modules');
     Route::match(['get', 'post'], '/banners', [AdminModulesController::class, 'banners'])->name('admin.modules.banners');
     Route::match(['get', 'post'], '/banners/{id}/update', [AdminModulesController::class, 'bannersUpdate'])
@@ -101,5 +103,15 @@ Route::prefix('modules')->group(function(){
     Route::match(['get', 'post'], '/banners/{id}/delete', [AdminModulesController::class, 'bannersDelete'])
         ->where('id', '[0-9]+')
         ->name('admin.modules.banners.delete');
+    // custom fields
+    Route::match(['get', 'post'],'custom-fields', [AdminCustomFieldsController::class, 'index'])->name('admin.modules.fields');
+    Route::match(['get', 'post'], '/custom-fields/{id}/update', [AdminCustomFieldsController::class, 'update'])
+        ->where('id', '[0-9]+')
+        ->name('admin.modules.fields.update');
+    Route::match(['get', 'post'], '/custom-fields/{id}/delete', [AdminCustomFieldsController::class, 'delete'])
+        ->where('id', '[0-9]+')
+        ->name('admin.modules.fields.delete');
+
+
 });
 

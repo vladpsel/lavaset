@@ -13,18 +13,18 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('banners', function (Blueprint $table) {
+        Schema::create('custom_fields', function (Blueprint $table) {
             $table->id();
             $table->string('locale', 255);
             $table->string('group', 255);
-            $table->string('left', 255)->nullable();
-            $table->string('right', 255)->nullable();
+            $table->string('picture', 255)->nullable();
             $table->string('title', 255)->nullable();
             $table->longText('text')->nullable();
             $table->string('link', 255)->nullable();
             $table->string('btn_title', 255)->nullable();
             $table->integer('sort_order')->nullable();
             $table->integer('is_visible')->nullable();
+            $table->string('related_group', 255)->nullable();
             $table->timestamps();
         });
     }
@@ -36,6 +36,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('banners');
+        Schema::dropIfExists('custom_fields');
     }
 };
