@@ -46,6 +46,10 @@ class AdminModulesController extends Controller
                 [
                     'title' => 'Банери',
                     'url' => 'admin.modules.banners',
+                ],
+                [
+                    'title' => 'Текстові поля',
+                    'url' => 'admin.modules.fields',
                 ]
             ]
         ]);
