@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\AdminCustomFieldsController;
 use App\Http\Controllers\Admin\AdminModulesController;
 use App\Http\Controllers\Admin\AdminOrderController;
 use App\Http\Controllers\Admin\AdminPageController;
+use App\Http\Controllers\Admin\AdminPostController;
 use App\Http\Controllers\Admin\AdminProductController;
 use App\Http\Controllers\Admin\AdminSecurityController;
 use App\Http\Controllers\Admin\AdminUserController;
@@ -111,7 +112,15 @@ Route::prefix('modules')->group(function(){
     Route::match(['get', 'post'], '/custom-fields/{id}/delete', [AdminCustomFieldsController::class, 'delete'])
         ->where('id', '[0-9]+')
         ->name('admin.modules.fields.delete');
+});
 
-
+Route::prefix('posts')->group(function(){
+    Route::match(['get', 'post'],'/', [AdminPostController::class, 'index'])->name('admin.posts');
+    Route::match(['get', 'post'], '/{id}', [AdminPostController::class, 'update'])
+        ->where('id', '[0-9]+')
+        ->name('admin.posts.single');
+    Route::match(['get', 'post'], '/{id}/delete', [AdminPostController::class, 'delete'])
+        ->where('id', '[0-9]+')
+        ->name('admin.posts.single.delete');
 });
 
