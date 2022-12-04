@@ -4,6 +4,7 @@ use App\Http\Controllers\Application\AppCartController;
 use App\Http\Controllers\Application\AppCategoryController;
 use App\Http\Controllers\Application\AppController;
 use App\Http\Controllers\Application\AppPageController;
+use App\Http\Controllers\Application\AppPostController;
 use App\Http\Controllers\Application\AppProductController;
 use Illuminate\Support\Facades\Route;
 
@@ -13,6 +14,8 @@ $routes = function () {
     Route::get('product/{id}', [AppProductController::class, 'index'])->where('id', '([a-z0-9\-]+)?')->name('public.product');
     Route::match(['get', 'post'], 'cart', [AppCartController::class, 'checkout'])->name('public.cart');
     Route::match(['get', 'post'], 'cart/success', [AppCartController::class, 'success'])->name('public.cart.success');
+    Route::get('news', [AppPostController::class, 'posts'])->name('public.posts');
+    Route::get('news/{id}', [AppPostController::class, 'single'])->where('id', '([a-z0-9\-]+)?');
     //
     Route::get('delivery', [AppPageController::class, 'delivery']);
     Route::get('sales', [AppPageController::class, 'sales']);

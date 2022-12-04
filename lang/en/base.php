@@ -1,37 +1,40 @@
 <?php
 
 return [
-    'home' => 'Home',
-    'home.title' => 'The best sushi delivery',
-    'home.desc' => 'We offer the most popular positions. So you can choose and get them faster',
-    'category.more' => 'See more',
+    'home' => 'Головна',
+    'home.title' => 'Просто топчик',
+    'home.desc' => 'Мы подобрали самые обожаемые большинством позиции, что бы вы могли побыстрее выбрать, чем себя порадовать',
+    'category.more' => 'Cмотреть всю категорию',
 
-    'indicator.gramm' => 'gr.',
-    'base.indicator.ml' => 'ml.',
-    'currency' => 'uah.',
-    'items' => 'it.',
+    'currency' => 'грн.',
+    'items' => 'шт.',
 
-    'recommend.title' => 'You also may like',
+    'recommend.title' => 'Вам також може сподобатись',
 
-    'cart.title' => 'Checkout',
-    'cart.total' => 'Total',
+    'cart.title' => 'Оформити замовлення',
+    'cart.total' => 'До сплати',
 
-    'indicator.zero' => 'gr.',
-    'indicator.one' => 'kg.',
-    'indicator.two' => 'ml.',
-    'indicator.three' => 'l.',
-    'indicator.four' => 'it.',
+    'indicator.zero' => 'гр.',
+    'indicator.one' => 'кг.',
+    'indicator.two' => 'мл.',
+    'indicator.three' => 'л.',
+    'indicator.four' => 'шт.',
 
     'menu' => 'Meню',
 
-    'buy.btn' => 'Add to cart',
-    'empty' => 'Empty',
+    'buy.btn' => 'До кошика',
+    'empty' => 'Немає товарів',
 
-    'get_recommended' => 'Find more',
+    'get_recommended' => 'Спробуйте ше',
 
-    'prev.item' => 'Previous',
-    'next.item' => 'Next',
+    'prev.item' => 'Попередній',
+    'next.item' => 'Наступний',
 
-    'category_more' => 'Look for category'
+    'thank-you' => 'Заказ оформлено',
+    'thank-you-text' => "Дякуємо за ваше замовлення. Найближчим часом з вами зв'яжеться менеджер для уточнення деталей замовлення",
 
+    'category_more' => 'Дивитись всю категорію',
+
+    'posts-title' => 'Новини',
+    'detail-btn' => 'Докладніше',
 ];

@@ -66,4 +66,17 @@ class Post extends Model
 
         return $rules;
     }
+
+    public function getPostLink(?string $link)
+    {
+
+        if (preg_match('/^(http)s?/i', $link)) {
+            return $link;
+        };
+
+        $link = trim($link, '/');
+
+        return getLink(app()->getLocale() . '/' . $link);
+
+    }
 }

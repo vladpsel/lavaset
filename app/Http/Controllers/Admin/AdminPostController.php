@@ -86,7 +86,7 @@ class AdminPostController extends Controller
             if($this->request->has('submit')) {
                 $validated = $this->request->validate($post->getUpdateRules($post->alias));
                 $data = $this->data;
-                $data['picture'] = $this->file->updateFile($post->left, 'picture', 'upload/posts');
+                $data['picture'] = $this->file->updateFile($post->picture, 'picture', 'upload/posts');
             }
 
             $post->update($data);

@@ -88,3 +88,12 @@ function getCartCounted()
     $cart = new Cart();
     return  $cart->countProducts(session()->get('products'));
 }
+
+function getCuttedText(string $string)
+{
+    $string = strip_tags($string);
+    $string = substr($string, 0, 200);
+    $string = rtrim($string, "!,.-");
+    $string = substr($string, 0, strrpos($string, ' '));
+    return $string . '...';
+}
