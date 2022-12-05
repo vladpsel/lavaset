@@ -1,5 +1,7 @@
 @extends('layout')
 
+@section('title', getTitle())
+
 @section('content')
   @include('app.partials._header')
     <main>

@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Banner;
 use App\Models\Category;
 use App\Models\Page;
+use App\Models\Post;
 use App\Models\Product;
 use Illuminate\Config\Repository;
 use Illuminate\Contracts\Foundation\Application;
@@ -81,6 +82,7 @@ class AdminModulesController extends Controller
             'pages' => Page::where('locale', $this->locale)->get(),
             'categories' => Category::where('locale', $this->locale)->get(),
             'products' => Product::where('locale', $this->locale)->get(),
+            'posts' => Post::where('locale', $this->locale)->get(),
             'sort_order' => $group,
         ]);
     }
@@ -120,6 +122,7 @@ class AdminModulesController extends Controller
             'items' => $banner->getLocaleGroupedItems(),
             'pages' => Page::where('locale', $this->locale)->get(),
             'categories' => Category::where('locale', $this->locale)->get(),
+            'posts' => Post::where('locale', $this->locale)->get(),
             'products' => Product::where('locale', $this->locale)->get(),
         ]);
     }

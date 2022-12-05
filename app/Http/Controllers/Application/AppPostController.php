@@ -16,6 +16,7 @@ class AppPostController extends Controller
         ])->orderBy('updated_at', 'desc')->get();
 
         return view('app.posts.index', [
+
             'items' => $posts,
         ]);
     }

@@ -1,6 +1,6 @@
 @extends('layout')
 
-@section('title', getTitle())
+@section('title', $title['title'] . ' | ' . getTitle())
 
 @section('content')
   @include('app.partials._header')

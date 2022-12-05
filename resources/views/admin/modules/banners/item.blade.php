@@ -89,7 +89,11 @@
                                        {{ $product->title }}
                                    </li>
                                 @endforeach
-
+                                @foreach($posts as $post)
+                                    <li data-text="{{ $post->title }}" data-link="/news/{{ $post->alias }}">
+                                        {{ $post->title }}
+                                    </li>
+                                @endforeach
                             </ul>
                         </div>
                         <fieldset>
