@@ -7,29 +7,7 @@
   <aside class="admin-aside">
     @include('admin.partials._admin-aside')
     <div class="admin-aside__bar">
-      <form action="#" class="form-main mb-1">
-          <fieldset>
-              <input type="text" placeholder="Пошук">
-          </fieldset>
-      </form>
-        @if(count($items) < 1)
-            <p>Немає єлементів</p>
-        @else
-            <ul class="aside-bar__list">
-                @foreach($items as $item)
-                    <li>
-                        <p class="mb-1">{{ $item[0]->title  }}</p>
-                        <ul class="list">
-                            @foreach($item as $singleItem)
-                                <li>
-                                    <a href="{{ route('admin.products.single', $singleItem->id) }}" class="lang-item">{{ $singleItem->locale }}</a>
-                                </li>
-                            @endforeach
-                        </ul>
-                    </li>
-                @endforeach
-            </ul>
-        @endif
+        <x-search-panel :items="$items" route="admin.products.single"></x-search-panel>
     </div>
   </aside>
   <div class="dashboard-panel">
@@ -49,7 +27,7 @@
         </div>
       </div>
 
-      <div class="flex">
+      <div class="flex v-top">
 
           <div class="one-of-three">
               <fieldset>
@@ -73,9 +51,12 @@
                   <input type="number" name="sort_order" value="{{ $sort_order }}">
               </fieldset>
               <h3 class="subtitle mb-1">Компоненти</h3>
+              <fieldset>
+                  <input type="text" class="component-input" placeholder="Пошук">
+              </fieldset>
               <ul class="component-list">
                   @foreach($components as $component)
-                      <li>
+                      <li data-text="{{ $component->title }}">
                           <label>
                               <input type="checkbox" name="components[]" value="{{ $component->group }}">
                               <span class="checkmark"></span>

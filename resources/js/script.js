@@ -23,15 +23,16 @@ function aliasInput() {
 
 }
 
-function searchPanel() {
-  let searchPanel = document.getElementById('search-input');
-  console.log(searchPanel);
+function searchInputs(input, listItems) {
+  let searchPanel = document.querySelector(input);
+  // let searchPanel = document.querySelector('search-input');
 
   if (!searchPanel) {
     return;
   }
 
-  let items = document.querySelectorAll('.aside-bar__list li')
+  // let items = document.querySelectorAll('.aside-bar__list li');
+  let items = document.querySelectorAll(listItems);
 
   let findValue = (value, items) => {
 
@@ -220,5 +221,6 @@ docReady(function () {
     handleProductCondition();
     dropdownselect();
     mobileMenu();
-    searchPanel();
+    searchInputs('#search-input', '.aside-bar__list li');
+    searchInputs('.component-input', '.component-list li');
 })

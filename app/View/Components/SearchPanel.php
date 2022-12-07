@@ -10,16 +10,21 @@ class SearchPanel extends Component
 {
     private ?array $items;
     private string $route;
+    /**
+     * @var mixed|null
+     */
+    private mixed $title;
 
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct(?array $items, string $route)
+    public function __construct(?array $items, string $route, $title = null)
     {
         $this->items = $items;
         $this->route = $route;
+        $this->title = $title;
     }
 
     /**
@@ -32,6 +37,7 @@ class SearchPanel extends Component
         return view('admin.components.search-panel', [
             'items' => $this->items,
             'route' => $this->route,
+            'title' => $this->title,
         ]);
     }
 }

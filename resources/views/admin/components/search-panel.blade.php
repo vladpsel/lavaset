@@ -1,4 +1,4 @@
-<form action="#" class="form-main mb-1" onsubmit="e.preventDefault()">
+<form action="#" class="form-main mb-1" onsubmit="return false;">
     <fieldset>
         <input id="search-input" type="text" placeholder="Пошук">
     </fieldset>
@@ -10,7 +10,7 @@
     <ul class="aside-bar__list">
         @foreach($items as $item)
             <li data-text="@foreach($item as $searchItem){{ $searchItem->title . ' ' }}@endforeach">
-                <p class="mb-1">{{ $item[0]->title  }}</p>
+                <p class="mb-1"> @if($title && !empty($title)) {{ $title }} @endif {{ $item[0]->title  }}</p>
                 <ul class="list">
                     @foreach($item as $singleItem)
                         <li>
