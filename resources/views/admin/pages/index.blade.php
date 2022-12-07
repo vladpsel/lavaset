@@ -7,32 +7,9 @@
   <aside class="admin-aside">
     @include('admin.partials._admin-aside')
     <div class="admin-aside__bar">
-      <form action="#" class="form-main mb-1">
-          <fieldset>
-              <input type="text" placeholder="Пошук">
-          </fieldset>
-      </form>
-
-        @if(count($pages) < 1)
-            <p>Немає єлементів</p>
-        @else
-            <ul class="aside-bar__list">
-                @foreach($pages as $page)
-                    <li>
-                        <p class="mb-1">{{ $page[0]->title  }}</p>
-                        <ul class="list">
-                            @foreach($page as $singleItem)
-                                <li>
-                                    <a href="{{ route('admin.pages.single', $singleItem->id) }}" class="lang-item">{{ $singleItem->locale }}</a>
-                                </li>
-                            @endforeach
-                        </ul>
-                    </li>
-                @endforeach
-            </ul>
-        @endif
-
+      <x-search-panel :items="$pages" route="admin.pages.single"></x-search-panel>
     </div>
+
   </aside>
   <div class="dashboard-panel">
     <form class="form-main" action="#" method="post">

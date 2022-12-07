@@ -24,6 +24,42 @@ function aliasInput() {
 }
 
 function searchPanel() {
+  let searchPanel = document.getElementById('search-input');
+  console.log(searchPanel);
+
+  if (!searchPanel) {
+    return;
+  }
+
+  let items = document.querySelectorAll('.aside-bar__list li')
+
+  let findValue = (value, items) => {
+
+      if (value === null || value.length == 0) {
+          Array.prototype.forEach.call(items, function(single){
+              single.classList.remove('hidden');
+          })
+          return;
+      }
+
+      let pattern = new RegExp(value, "i");
+
+      Array.prototype.forEach.call(items, function(single){
+          let dataVal = single.getAttribute('data-text');
+
+          if (pattern.test(dataVal)) {
+              single.classList.remove('hidden');
+          } else {
+              single.classList.add('hidden');
+          }
+      })
+
+  }
+
+  searchPanel.addEventListener('input', function(){
+    let val = searchPanel.value;
+    findValue(val, items);
+  });
 
 }
 
