@@ -54,6 +54,26 @@ class AdminOrderController extends Controller
         ]);
     }
 
+    public function single(int $id)
+    {
+        $order = Order::find($id);
+
+        if (!$id || !$order) {
+            return redirect()->route('admin.orders');
+        }
+
+        $order->details = json_decode($order->details, true);
+        $order->products = json_decode($order->products, true);
+
+        return view('admin.orders.single', [
+            'items' => $order->all(),
+            'conditions' => $order->orderConditions,
+            'order' => $order,
+            'userProducts' => $order->products,
+            'products' => Product::where('locale', $this->locale)->get(),
+        ]);
+    }
+
     public function update(int $id)
     {
         $order = Order::find($id);

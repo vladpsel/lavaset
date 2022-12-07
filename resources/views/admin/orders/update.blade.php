@@ -20,7 +20,7 @@
                 @foreach($items as $item)
                     <li>
                         <p class="mb-1">
-                            <a href="{{route('admin.orders.single', $item->id)}}">{{ $item->id . '. ' . $item->name }}</a>
+                            <a href="{{route('admin.orders.single.edit', $item->id)}}">{{ $item->id . '. ' . $item->name }}</a>
                         </p>
                         <p>
                             <a href="#">{{ $item->phone }}</a>
@@ -45,6 +45,7 @@
       <div class="flex f-between v-center">
         <h1 class="title-main item mb-1">Замовлення: #{{ $order->id }}</h1>
         <div class="btn-group item mb-1">
+           <a href="{{ route('admin.orders.single', $order->id) }}" class="btn btn-main neutral">Назад</a>
            <a href="{{ route('admin.orders.single.delete', $order->id) }}" class="btn btn-main alert">Видалити</a>
           <button type="submit" name="submit" class="btn btn-main primary">Оновити</button>
         </div>
