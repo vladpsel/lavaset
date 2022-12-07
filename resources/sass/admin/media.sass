@@ -22,7 +22,30 @@
           max-width: 50%
 
   .admin-aside
-    display: none
+    flex: 1 1 100%
+    background: #fff
+    .mobile-top
+      display: flex
+    .logo
+      display: none
+    &__bar
+      background: #fff
+    &__left,
+    &__bar
+      display: none
+      position: fixed
+      top: 62px
+      left: 0
+      height: calc(100vh - 62px)
+      overflow: auto
+      min-height: auto
+      padding: 2rem 1rem 3rem
+      width: 100%
+      flex-direction: column
+      flex-wrap: nowrap
+      z-index: 25
+      &.active
+        display: flex
 
 // Tablets small desktop
 @media (max-width: 1024px)

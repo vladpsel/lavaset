@@ -19,8 +19,11 @@ function aliasInput() {
 
     Array.prototype.forEach.call(elements, function(item){
         IMask(item, maskOptions);
-        console.log(item);
     });
+
+}
+
+function searchPanel() {
 
 }
 
@@ -143,9 +146,43 @@ function productOrder() {
     });
 }
 
+function mobileMenu () {
+  let parent = document.querySelector('.mobile-top');
+  let elements = parent.querySelectorAll('.icon');
+  let body = document.querySelector('body');
+
+  if (!elements) {
+    return;
+  }
+
+  let bodyOverflow = () => {
+    let active = parent.querySelectorAll('.active');
+
+    if (active.length == 0) {
+      body.style.overflow = 'auto';
+    } else {
+      body.style.overflow = 'hidden';
+    }
+    console.log(active.length);
+  }
+
+  Array.prototype.forEach.call(elements, function(item){
+    item.addEventListener('click', function() {
+      let id = this.getAttribute('data-block');
+      let block = document.querySelector('.' + id);
+      this.classList.toggle('active');
+      block.classList.toggle('active');
+      bodyOverflow();
+    })
+  });
+
+}
+
 docReady(function () {
     aliasInput();
     productOrder();
     handleProductCondition();
     dropdownselect();
+    mobileMenu();
+    searchPanel();
 })

@@ -1,3 +1,17 @@
+.mobile-top
+  display: none
+  flex: 1 1 100%
+  justify-content: space-between
+  padding: 1rem
+  .icon
+    cursor: pointer
+    &.active
+      background: $color-two
+      svg
+        fill: #ffffff
+  svg
+    fill: $color-two
+
 .admin-aside
   display: flex
   justify-content: flex-start
@@ -23,7 +37,6 @@
     > li
       a
         padding-left: 5rem
-
 
   &__left
     background: $grey-two
