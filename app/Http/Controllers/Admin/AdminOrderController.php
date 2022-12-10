@@ -48,7 +48,7 @@ class AdminOrderController extends Controller
         }
 
         return view('admin.orders.index', [
-            'items' => $order->all(),
+            'items' => $order->orderBy('id', 'desc')->get(),
             'conditions' => $order->orderConditions,
             'products' => Product::where('locale', $this->locale)->get(),
         ]);

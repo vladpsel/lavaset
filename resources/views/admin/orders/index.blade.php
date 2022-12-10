@@ -9,16 +9,16 @@
     <div class="admin-aside__bar">
       <form action="#" class="form-main mb-1">
           <fieldset>
-              <input type="text" placeholder="Пошук">
+              <input type="text" placeholder="Пошук" id="search-input">
           </fieldset>
       </form>
 
         @if(count($items) < 1)
             <p>Немає єлементів</p>
         @else
-            <ul class="aside-bar__list">
+            <ul class="aside-bar__list search-list">
                 @foreach($items as $item)
-                    <li>
+                    <li data-text="{{ $item->name . ' ' . $item->phone}}">
                         <p class="mb-1">
                             <a href="{{ route('admin.orders.single', $item->id) }}">{{ $item->id . '. ' . $item->name }}</a>
                         </p>
@@ -29,7 +29,6 @@
                 @endforeach
             </ul>
         @endif
-
     </div>
   </aside>
   <div class="dashboard-panel">
@@ -123,10 +122,13 @@
                   <label class="label">Загальна вартість</label>
                   <input type="number" name="total" id="total" readonly>
               </fieldset>
-              <h3 class="subtitle">Товари</h3>
-              <ul class="products-list component-list">
+              <h3 class="subtitle mb-1">Товари</h3>
+              <fieldset>
+                  <input type="text" class="component-input" placeholder="Пошук">
+              </fieldset>
+              <ul class="products-list component-list search-list">
                   @foreach($products as $product)
-                      <li>
+                      <li data-text="{{ $product->title }}">
                           <label class="two-of-four">
                               <input type="checkbox" name="products[{{ $product->group }}]" value="1" data-product-id="{{ $product->group }}">
                               <span class="checkmark"></span>

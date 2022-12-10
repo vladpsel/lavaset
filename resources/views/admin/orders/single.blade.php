@@ -6,31 +6,30 @@
 <div id="admin">
   <aside class="admin-aside">
     @include('admin.partials._admin-aside')
-    <div class="admin-aside__bar">
-      <form action="#" class="form-main mb-1">
-          <fieldset>
-              <input type="text" placeholder="Пошук">
-          </fieldset>
-      </form>
+      <div class="admin-aside__bar">
+          <form action="#" class="form-main mb-1">
+              <fieldset>
+                  <input type="text" placeholder="Пошук" id="search-input">
+              </fieldset>
+          </form>
 
-        @if(count($items) < 1)
-            <p>Немає єлементів</p>
-        @else
-            <ul class="aside-bar__list">
-                @foreach($items as $item)
-                    <li>
-                        <p class="mb-1">
-                            <a href="{{route('admin.orders.single', $item->id)}}">{{ $item->id . '. ' . $item->name }}</a>
-                        </p>
-                        <p>
-                            <a href="#">{{ $item->phone }}</a>
-                        </p>
-                    </li>
-                @endforeach
-            </ul>
-        @endif
-
-    </div>
+          @if(count($items) < 1)
+              <p>Немає єлементів</p>
+          @else
+              <ul class="aside-bar__list search-list">
+                  @foreach($items as $item)
+                      <li data-text="{{ $item->name . ' ' . $item->phone}}">
+                          <p class="mb-1">
+                              <a href="{{ route('admin.orders.single', $item->id) }}">{{ $item->id . '. ' . $item->name }}</a>
+                          </p>
+                          <p>
+                              <a href="#">{{ $item->phone }}</a>
+                          </p>
+                      </li>
+                  @endforeach
+              </ul>
+          @endif
+      </div>
   </aside>
   <div class="dashboard-panel">
       <div class="dashboard-panel">
