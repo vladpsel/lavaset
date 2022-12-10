@@ -66,7 +66,7 @@ class AdminOrderController extends Controller
         $order->products = json_decode($order->products, true);
 
         return view('admin.orders.single', [
-            'items' => $order->all(),
+            'items' => $order->orderBy('id', 'desc')->get(),
             'conditions' => $order->orderConditions,
             'order' => $order,
             'userProducts' => $order->products,
@@ -100,7 +100,7 @@ class AdminOrderController extends Controller
 
 
         return view('admin.orders.update', [
-            'items' => $order->all(),
+            'items' => $order->orderBy('id', 'desc')->get(),
             'conditions' => $order->orderConditions,
             'order' => $order,
             'userProducts' => $order->products,
@@ -122,7 +122,7 @@ class AdminOrderController extends Controller
         }
 
         return view('admin.orders.delete', [
-            'items' => $order->all(),
+            'items' => $order->orderBy('id', 'desc')->get(),
             'order' => $order,
         ]);
     }

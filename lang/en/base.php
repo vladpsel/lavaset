@@ -1,40 +1,37 @@
 <?php
 
 return [
-    'home' => 'Головна',
-    'home.title' => 'Просто топчик',
-    'home.desc' => 'Мы подобрали самые обожаемые большинством позиции, что бы вы могли побыстрее выбрать, чем себя порадовать',
-    'category.more' => 'Cмотреть всю категорию',
+    'category.more' => 'Watch category',
 
-    'currency' => 'грн.',
-    'items' => 'шт.',
+    'currency' => 'uah.',
+    'items' => 'it.',
 
-    'recommend.title' => 'Вам також може сподобатись',
+    'recommend.title' => 'See more',
 
-    'cart.title' => 'Оформити замовлення',
-    'cart.total' => 'До сплати',
+    'cart.title' => 'Checkout',
+    'cart.total' => 'Total',
 
-    'indicator.zero' => 'гр.',
-    'indicator.one' => 'кг.',
-    'indicator.two' => 'мл.',
-    'indicator.three' => 'л.',
-    'indicator.four' => 'шт.',
+    'indicator.zero' => 'gr.',
+    'indicator.one' => 'kg.',
+    'indicator.two' => 'ml.',
+    'indicator.three' => 'l.',
+    'indicator.four' => 'it.',
 
-    'menu' => 'Meню',
+    'menu' => 'Menu',
 
-    'buy.btn' => 'До кошика',
-    'empty' => 'Немає товарів',
+    'buy.btn' => 'Add to cart',
+    'empty' => 'No products',
 
-    'get_recommended' => 'Спробуйте ше',
+    'get_recommended' => 'Taste more',
 
-    'prev.item' => 'Попередній',
-    'next.item' => 'Наступний',
+    'prev.item' => 'Previous',
+    'next.item' => 'Next',
 
-    'thank-you' => 'Заказ оформлено',
-    'thank-you-text' => "Дякуємо за ваше замовлення. Найближчим часом з вами зв'яжеться менеджер для уточнення деталей замовлення",
+    'thank-you' => 'Success',
+    'thank-you-text' => "Thank you we will contact you soon to confirm your order",
 
-    'category_more' => 'Дивитись всю категорію',
+    'category_more' => 'See more',
 
-    'posts-title' => 'Новини',
-    'detail-btn' => 'Докладніше',
+    'posts-title' => 'News',
+    'detail-btn' => 'More',
 ];
