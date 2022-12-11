@@ -1,5 +1,7 @@
 @extends('layout')
 
+@section('title', __('cart.checkout.name') . ' | ' . getTitle())
+
 @section('content')
   @include('app.partials._header')
     <main>

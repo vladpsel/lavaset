@@ -108,7 +108,7 @@
 
               <fieldset class="one-of-four">
                   <label class="label">Вага</label>
-                  <input type="number" name="weight" value="{{ request()->input('weight', $entity->weight) }}">
+                  <input type="number" name="weight" value="{{ request()->input('weight', $entity->weight) }}" step="0.01" min="0.01">
               </fieldset>
 
               <fieldset class="one-of-four">

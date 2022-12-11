@@ -106,7 +106,7 @@
 
               <fieldset class="one-of-four">
                   <label class="label">Вага</label>
-                  <input type="number" name="weight" value="{{ request()->input('weight', old('weight')) }}">
+                  <input type="number" name="weight" value="{{ request()->input('weight', old('weight')) }}" step="0.01">
                   @error('weight')
                   <p class="notice mb-1 full error"> {{ $message }} </p>
                   @enderror

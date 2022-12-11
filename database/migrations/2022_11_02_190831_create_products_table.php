@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('alias', 255);
             $table->string('description', 255)->nullable();
             $table->float('price')->nullable();
-            $table->integer('weight')->nullable();
+            $table->float('weight')->nullable();
             $table->integer('parameter')->nullable();
             $table->string('picture', 255)->nullable();
             $table->text('components')->nullable();

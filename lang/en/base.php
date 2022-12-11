@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'home' => 'Home',
     'category.more' => 'Watch category',
 
     'currency' => 'uah.',
