@@ -8,6 +8,9 @@ use App\Http\Controllers\Application\AppPostController;
 use App\Http\Controllers\Application\AppProductController;
 use Illuminate\Support\Facades\Route;
 
+//$locales = config('app.available_locales');
+$locales = implode('|', config('app.available_locales'));
+
 $routes = function () {
     Route::get('/', [AppController::class, 'home']);
     Route::get('category/{id}', [AppCategoryController::class, 'index'])->where('id', '([a-z0-9\-]+)?');
@@ -31,6 +34,7 @@ Route::prefix('api/v1')->group(function(){
 // Functions for correct work routes with/without prefix
 $routes();
 Route::group(
-    ['prefix' => '{locale}', 'where' => ['locale' => '([a-z]{2})?']],
+//    ['prefix' => '{locale}', 'where' => ['locale' => '([a-z]{2})?']],
+    ['prefix' => '{locale}', 'where' => ['locale' => '(' . $locales .')?']],
     $routes
 );
