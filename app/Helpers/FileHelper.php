@@ -23,7 +23,9 @@ class FileHelper
         }
 
         $file = $this->request->file($key);
-        $filename = date('YmdHi').$file->getClientOriginalName();
+        $originalFilename = preg_replace('/[\x{0410}-\x{042F} ]*/u', '', $file->getClientOriginalName());
+
+        $filename = date('YmdHi') . $originalFilename;
         $file->move(public_path($path), $filename);
         return $filename;
     }
@@ -39,7 +41,8 @@ class FileHelper
         }
 
         $file = $this->request->file($key);
-        $filename = date('YmdHi').$file->getClientOriginalName();
+        $originalFilename = preg_replace('/[\x{0410}-\x{042F} ]*/u', '', $file->getClientOriginalName());
+        $filename = date('YmdHi') . $originalFilename;
         $file->move(public_path($path), $filename);
         return $filename;
     }

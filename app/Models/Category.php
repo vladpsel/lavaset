@@ -16,12 +16,12 @@ class Category extends Model
         'icon',
         'description',
         'keywords',
-        'isVisible',
+        'is_visible',
         'group',
     ];
 
     protected $attributes = [
-        'isVisible' => 1,
+        'is_visible' => 1,
     ];
 
     public function updateCommonFields(self $page)
@@ -63,14 +63,16 @@ class Category extends Model
         return ++$group;
     }
 
-    public function getValidationRules(self $page, string $key): array
+    public function getValidationRules(string $key): array
     {
         $data = [
             'rules' => [
                 'title' => 'required|min:2',
+                'icon' => 'nullable|image',
             ],
             'messages' => [
                 ':attribute.required' => "Це поле обов`язкове для заповнення",
+                ':attribute.unique' => "Це поле повино бути унікальним. В системі знайдено існуюче значення",
             ]
         ];
 
@@ -81,10 +83,10 @@ class Category extends Model
             return $data;
         }
 
-        if ($alias->group === $page->group) {
+        if ($alias->group === $this->group) {
             $data['rules']['alias'] = 'required|min:2';
         } else {
-            $data['rules']['alias'] = 'required|min:2|unique:pages';
+            $data['rules']['alias'] = 'required|min:2|unique:categories';
         }
 
         return $data;
@@ -93,6 +95,7 @@ class Category extends Model
     private function getCommonFields(self $page): array
     {
         return [
+            'is_visible' => $page->is_visible,
             'alias' => $page->alias,
             'icon' => $page->icon,
         ];

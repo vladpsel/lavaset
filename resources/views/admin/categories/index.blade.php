@@ -11,6 +11,11 @@
     </div>
   </aside>
   <div class="dashboard-panel">
+      @if(session('message'))
+          <div class="full message-notification">
+              {!! session('message') !!}
+          </div>
+      @endif
     <form class="form-main" action="#" method="post" enctype="multipart/form-data">
       @csrf
 

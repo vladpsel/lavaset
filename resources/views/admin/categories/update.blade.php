@@ -50,17 +50,30 @@
               Аліас необхідно заповнювати латинськими літерами, низьким регістром, замість пробілу використовувати "-"
           </p>
 
-          <fieldset class="one-of-three">
+          <fieldset class="one-of-four">
               <label class="label">Иконка: <span class="notice"> {{ $category->icon }} </span></label>
-              <div class="img-wrp mb-1">
-                  <img src="/upload/categories/{{ $category->icon }}" alt="">
-              </div>
-              <a href="{{ route('admin.remove.asset', ['categories', $category->icon]) }}" class="flex error mb-1">Очистити зображення</a>
+              @if(!empty($category->icon) && $category->icon !== '')
+                  <div class="img-wrp mb-1">
+                      <img src="/upload/categories/{{ $category->icon }}" alt="">
+                  </div>
+                  <button name="remove_pic" value="icon" type="submit" class="flex error mb-1">Очистити зображення</button>
+              @endif
               <input type="file" name="icon">
           </fieldset>
 
+          <fieldset class="one-of-four">
+              <label class="label">Статус</label>
+              <select name="is_visible">
+                  <option value="1" @if($category->is_visible == '1') selected @endif>На сайті</option>
+                  <option value="0" @if(empty($category->is_visible) || $category->is_visible == '0') selected @endif>Приховано</option>
+              </select>
+              @error('sort_order')
+              <p class="notice mb-1 full error"> {{ $message }} </p>
+              @enderror
+          </fieldset>
 
-          <fieldset class="one-of-three">
+
+          <fieldset class="one-of-four">
               <label class="label">Опис</label>
               <textarea name="description" rows="8" cols="80">{{ request()->input('description', $category->description) }}</textarea>
           </fieldset>
@@ -68,16 +81,13 @@
           <p class="notice mb-1 full error"> {{ $message }} </p>
           @enderror
 
-          <fieldset class="one-of-three">
+          <fieldset class="one-of-four">
               <label class="label">Ключові слова</label>
               <textarea name="keywords" rows="8" cols="80">{{ request()->input('keywords', $category->keywords) }}</textarea>
               @error('keywords')
               <p class="notice mb-1 full error"> {{ $message }} </p>
               @enderror
           </fieldset>
-      </div>
-
-
       </div>
 
     </form>

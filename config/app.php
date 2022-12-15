@@ -83,7 +83,7 @@ return [
     */
 
     'locale' => 'uk',
-    'available_locales' => ['uk', 'en',],
+    'available_locales' => ['uk', 'en', 'ru'],
     'public_locales' => ['en',],
 
     /*

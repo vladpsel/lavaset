@@ -23,6 +23,23 @@ function aliasInput() {
 
 }
 
+function messageAlert() {
+    let elem = document.querySelector('.message-notification');
+    console.log(elem);
+
+    if (!elem) {
+        return;
+    }
+
+    setTimeout(function() {
+        elem.classList.add('disappear');
+    }, 3000)
+
+    setTimeout(function() {
+        elem.style.display = 'none';
+    }, 3500)
+}
+
 function searchInputs(input, listItems) {
   let searchPanel = document.querySelector(input);
   // let searchPanel = document.querySelector('search-input');
@@ -223,4 +240,5 @@ docReady(function () {
     mobileMenu();
     searchInputs('#search-input', '.aside-bar__list li');
     searchInputs('.component-input', '.component-list li');
+    messageAlert();
 })

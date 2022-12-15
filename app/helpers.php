@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use App\Features\Cart;
+use App\Models\Category;
 
 function getLogo(): string
 {
@@ -75,11 +76,14 @@ function getLangList()
 ////    return trim($link, '/');
 //}
 
+/**
+ * @return mixed
+ */
 function getCategories()
 {
-    return \App\Models\Category::where([
+    return Category::where([
         ['locale', '=', app()->getLocale()],
-        ['isVisible', '=', 1]
+        ['is_visible', '=', 1]
     ])->orderBy('group', 'asc')->get();
 }
 

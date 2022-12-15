@@ -63,6 +63,11 @@ svg
   padding: 1.3rem
   margin-bottom: 1rem
   color: $text-white
+  max-height: 5rem
+  &.disappear
+    +animate
+    opacity: 0
+    max-height: 0
 
 .component-list
   max-height: 20rem
