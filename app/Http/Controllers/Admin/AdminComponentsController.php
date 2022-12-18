@@ -5,15 +5,21 @@ namespace App\Http\Controllers\Admin;
 use App\Helpers\FileHelper;
 use App\Http\Controllers\Controller;
 use App\Models\Component;
+use App\Services\ComponentService;
+use App\Traits\BasicControllerTrait;
 use Illuminate\Config\Repository;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 
 class AdminComponentsController extends Controller
 {
+
+    use BasicControllerTrait;
+
     /**
      * @var Request
      */
@@ -27,36 +33,26 @@ class AdminComponentsController extends Controller
      * @var Repository|Application|mixed
      */
     private mixed $locales;
+    private ComponentService $componentService;
+    private string $redirectURI;
 
-    public function __construct(Request $request, FileHelper $fileHelper)
+    public function __construct(Request $request, FileHelper $fileHelper, ComponentService $componentService)
     {
         $this->request = $request;
         $this->fileHelper = $fileHelper;
         $this->locales = config('app.available_locales');
+        $this->componentService = $componentService;
+        $this->redirectURI = 'admin.components';
     }
 
     public function index(): Factory|View|RedirectResponse|Application
     {
-
         $component = new Component();
 
-        if ($this->request->isMethod('post') && $this->request->has('submit')) {
-            $validated = $this->request->validate([
-               'title' => 'required|min:1',
-               'sort_order' => 'integer|min:1',
-            ]);
-
-            $data = $validated;
-            $data['group'] = $component->getGroup();
-            $data['picture'] = $this->fileHelper->uploadFile('icon', 'upload/components');
-
-            foreach ($this->locales as $locale) {
-                $data['locale'] = $locale;
-                $single = $component->create($data);
-                $result[] = $single;
-            }
-            return redirect()->route('admin.components')->with('message', 'Компонент додано!');
-
+        if ($this->postSubmitted()) {
+            $validated = $this->request->validate($this->componentService->getValidationRules());
+            $result = $this->componentService->create();
+            return redirect()->route('admin.components')->with('message', $this->componentService->getOperationResult($result));
         }
 
         return view('admin.product-components.index', [
@@ -68,23 +64,19 @@ class AdminComponentsController extends Controller
     public function update(int $id): Factory|View|RedirectResponse|Application
     {
         $component = Component::find($id);
+        $this->checkEntity($component, $this->redirectURI);
 
-        if (!$component) {
-            return redirect()->route('admin.components');
-        }
+        if ($this->request->isMethod('post')) {
 
-        if ($this->request->isMethod('post') && $this->request->has('submit')) {
-            $validated = $this->request->validate([
-                'title' => 'required|min:1',
-                'sort_order' => 'integer|min:1',
-                'isVisible' => 'present',
-            ]);
+            if ($this->request->has('remove_pic')) {
+                $result = $this->componentService->checkAssetRemoving($component);
+            }
 
-            $validated['picture'] = $this->fileHelper->updateFile($component->picture, 'icon', 'upload/components');
-            $component->update($validated);
-            $component->updateCommonFields($component);
-
-            return back()->with('message', 'Сторінку успішно оновлено');
+            if ($this->request->has('submit')) {
+                $validated = $this->request->validate($this->componentService->getValidationRules());
+                $result = $this->componentService->update($component);
+            }
+            return back()->with('message', $this->componentService->getOperationResult($result));
         }
 
         return view('admin.product-components.update', [
@@ -97,15 +89,11 @@ class AdminComponentsController extends Controller
     {
         $requested = Component::where('group', $id)->get();
 
-        if (count($requested) < 1) {
-            return back();
-        }
+        $this->checkEntity($requested, $this->redirectURI);
 
-        if ($this->request->isMethod('post') && $this->request->has('submit')) {
-            foreach ($requested as $item) {
-                $item->delete();
-            }
-            return redirect()->route('admin.components')->with('message', 'Компонент було видалено');
+        if ($this->postSubmitted()) {
+            $result = $this->componentService->delete($requested);
+            return redirect()->route('admin.components')->with('message', $this->componentService->getOperationResult($result));
         }
 
         return view('admin.product-components.delete', [

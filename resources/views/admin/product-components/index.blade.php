@@ -39,7 +39,7 @@
 
           <fieldset class="one-of-three">
               <label class="label">Іконка</label>
-              <input type="file" name="icon">
+              <input type="file" name="picture">
           </fieldset>
 
           <fieldset class="one-of-three">

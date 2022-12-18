@@ -5,6 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * @method create(array $data)
+ */
 class Component extends Model
 {
     use HasFactory, BasicModelTrait;

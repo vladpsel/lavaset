@@ -40,11 +40,13 @@
 
           <fieldset class="one-of-four">
               <label class="label">Іконка: <span class="notice">{{ $component->picture }}</span> </label>
-              <input type="file" name="icon">
-              <div class="img-wrp mb-1">
-                  <img src="/upload/components/{{ $component->picture }}" alt="#">
-              </div>
-              <a href="{{ route('admin.remove.asset', ['components', $component->picture]) }}" class="flex error mb-1">Очистити зображення</a>
+              <input type="file" name="picture">
+              @if(!empty($component->picture) && $component->picture !== '')
+                  <div class="img-wrp mb-1">
+                      <img src="/upload/components/{{ $component->picture }}" alt="#">
+                  </div>
+                  <button name="remove_pic" value="picture" type="submit" class="flex error mb-1">Очистити зображення</button>
+              @endif
           </fieldset>
 
           <fieldset class="one-of-four">

@@ -188,6 +188,7 @@ function productOrder() {
 
     Array.prototype.forEach.call(elements, function(item){
         item.addEventListener('change', function () {
+          console.log('this');
             let id = this.getAttribute('data-product-quantity');
             let count = this.value;
 

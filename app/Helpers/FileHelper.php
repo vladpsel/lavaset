@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Helpers;
 
+use Exception;
 use Illuminate\Http\Request;
 
 class FileHelper
@@ -40,11 +41,15 @@ class FileHelper
             unlink(public_path($path . '/' . $existFilename));
         }
 
-        $file = $this->request->file($key);
-        $originalFilename = preg_replace('/[\x{0410}-\x{042F} ]*/u', '', $file->getClientOriginalName());
-        $filename = date('YmdHi') . $originalFilename;
-        $file->move(public_path($path), $filename);
-        return $filename;
+        try {
+            $file = $this->request->file($key);
+            $originalFilename = preg_replace('/[\x{0410}-\x{042F} ]*/u', '', $file->getClientOriginalName());
+            $filename = date('YmdHi') . $originalFilename;
+            $file->move(public_path($path), $filename);
+            return $filename;
+        } catch (Exception $e) {
+            return $e->getMessage();
+        }
     }
 
     public function removeFile(?string $existFilename, string $path): ?bool

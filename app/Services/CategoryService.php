@@ -80,8 +80,6 @@ class CategoryService
      */
     public function update(Category $category): bool
     {
-        $result = [];
-
         $data = $this->data;
 
         if (!$data || empty($data) || count($data) < 1) {
