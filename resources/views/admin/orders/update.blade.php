@@ -138,7 +138,7 @@
                       @endif
                       <li data-text="{{ $product->title }}">
                           <label class="two-of-four">
-                              <input type="checkbox" name="products[{{ $product->group }}]" value="1" data-product-id="{{ $product->group }}"
+                              <input type="checkbox" name="products[{{ $product->group }}]" value="@if(!empty($current)){{ $current['quantity'] }}@else{{1}}@endif" data-product-id="{{ $product->group }}"
                                      @if(!empty($current)) checked @endif
                               >
                               <span class="checkmark"></span>
